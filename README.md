@@ -3,7 +3,7 @@
 </p>
 
 # mini-helper
-![standard-image](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)
+![standard-image](https://img.shields.io/badge/code%20style-standard-brightgreen.svg) [![Coverage Status](https://coveralls.io/repos/github/avatarsolucoes/mini-helper/badge.svg?branch=main)](https://coveralls.io/github/avatarsolucoes/mini-helper?branch=main)
 
 ## License
 MIT © [Github: Avatar Solu&ccedil;&otilde;es](https://github.com/avatarsolucoes)
