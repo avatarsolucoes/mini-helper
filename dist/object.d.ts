@@ -45,7 +45,6 @@ export function onlyWithProperties(obj: Object, keys?: Array<string> | Object | 
  * @param {replaceObjectOptions} options
  * @returns {Object} object affected
  */
-export function replaceObject(dest: Object, src: Object, options: replaceObjectOptions): Object;
 /**
  * Sorts array of objects
  * credits: https://www.sitepoint.com/sort-an-array-of-objects-in-javascript/
