@@ -1,4 +1,4 @@
-import _ from 'lodash'
+// import _ from 'lodash'
 import { forceArray } from './array'
 
 /**
@@ -75,19 +75,19 @@ export function onlyWithProperties(obj, keys = []) {
  * @param {replaceObjectOptions} options
  * @returns {Object} object affected
  */
-export function replaceObject(dest, src, options) {
-  if (!dest || !src) return false
-  const funcCopy = value => (options && options.clone ? _.cloneDeep(value) : value)
+// export function replaceObject(dest, src, options) {
+//   if (!dest || !src) return false
+//   const funcCopy = value => (options && options.clone ? _.cloneDeep(value) : value)
 
-  Object.keys(src).forEach(key => {
-    if ((options && options.inc) || key in dest) {
-      // eslint-disable-next-line no-param-reassign
-      dest[key] = funcCopy(src[key])
-    }
-  })
+//   Object.keys(src).forEach(key => {
+//     if ((options && options.inc) || key in dest) {
+//       // eslint-disable-next-line no-param-reassign
+//       dest[key] = funcCopy(src[key])
+//     }
+//   })
 
-  return dest
-}
+//   return dest
+// }
 
 /**
  * Sorts array of objects
