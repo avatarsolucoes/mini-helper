@@ -1,5 +1,5 @@
 {
-  "name": "helpers",
+  "name": "mini-helper",
   "version": "1.0.0",
   "description": "",
   "private": false,
@@ -31,7 +31,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/leguass7/helpers.git"
+    "url": "https://github.com/avatarsolucoes/mini-helper.git"
   },
   "scripts": {
     "coveralls": "cat ./coverage/lcov.info | coveralls",
