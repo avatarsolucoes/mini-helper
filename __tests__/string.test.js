@@ -10,8 +10,9 @@ import {
   // isHex
   extractHostname,
   toMask,
-  isValidTime
-} from '../src/string'
+  isValidTime,
+  urlEncodeObject
+} from '../src'
 
 describe('Test UTILS', () => {
   it('Deveria remover *', done => {
@@ -97,4 +98,13 @@ describe('Test UTILS', () => {
     expect(isValidTime('')).toEqual(false)
     done()
   })
+
+  it('Deveria retornar URL ecooded time', done => {
+    expect(urlEncodeObject({ foo: 'fooValue', bar: 'barValue' })).toEqual(
+      'foo=fooValue&bar=barValue'
+    )
+    done()
+  })
+
+  // foo=fooValue&bar=barValue
 })

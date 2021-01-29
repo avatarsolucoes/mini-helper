@@ -13,7 +13,8 @@ export {
   rmFirstChar,
   rmLastChar,
   titleize,
-  toMask
+  toMask,
+  urlEncodeObject
 } from './string'
 
 export { getValue, objectHasKeys } from './objects'

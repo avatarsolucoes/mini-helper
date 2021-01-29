@@ -212,3 +212,19 @@ export function camelize(str) {
     })
     .replace(/\s+/g, '')
 }
+
+/**
+ * @function urlEncodeObject
+ * @param {Object} object
+ * @returns {String}
+ * @example
+ * urlEncodeObject({foo: 'fooValue', bar: 'barValue'}) // foo=fooValue&bar=barValue
+ */
+export function urlEncodeObject(object) {
+  if (typeof object !== 'object' || object instanceof Date) return ''
+  const result = []
+  for (const key in object) {
+    result.push(`${key}=${encodeURIComponent(object[key])}`)
+  }
+  return result.length ? result.join('&') : ''
+}
