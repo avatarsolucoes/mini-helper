@@ -113,12 +113,3 @@ export function compareValues(key, order = 'asc') {
     return order === 'desc' ? comparison * -1 : comparison
   }
 }
-
-/**
- * @function getValue
- * @param {Object} obj
- * @param {string} key
- * @param {any} defaultValue
- */
-export const getValue = (obj, key, defaultValue = '') =>
-  obj && obj[key] ? obj[key] || defaultValue : defaultValue
