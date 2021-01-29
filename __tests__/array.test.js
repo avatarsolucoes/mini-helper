@@ -1,4 +1,4 @@
-import { forceArray, unArray, range, rangeArray, buffToArray } from '../src/array'
+import { unArray, range, rangeArray, buffToArray, forceArray } from '../src'
 
 describe('Test UTILS', () => {
   it('Deveria retornar um array', done => {

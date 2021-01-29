@@ -1,16 +1,16 @@
 import chunk from 'chunk'
-
-/**
- * Force any values an array
- * @function forceArray
- * @param {any} value
- * @return {Array}
- * @example
- * forceArray('1') // return ['1']
- */
-export function forceArray(value = []) {
-  return !Array.isArray(value) ? [value] : value
-}
+import { forceArray } from './arrayts'
+// /**
+//  * Force any values an array
+//  * @function forceArray
+//  * @param {any} value
+//  * @return {Array}
+//  * @example
+//  * forceArray('1') // return ['1']
+//  */
+// export function forceArray(value = []) {
+//   return !Array.isArray(value) ? [value] : value
+// }
 
 /**
  * If array return first item

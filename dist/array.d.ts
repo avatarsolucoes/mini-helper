@@ -1,13 +1,4 @@
 /**
- * Force any values an array
- * @function forceArray
- * @param {any} value
- * @return {Array}
- * @example
- * forceArray('1') // return ['1']
- */
-export function forceArray(value?: any): any[];
-/**
  * If array return first item
  * @function unArray
  * @param {Array} arr
