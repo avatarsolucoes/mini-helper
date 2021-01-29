@@ -7,5 +7,12 @@ export function objectHasKeys<T>(obj: T | Object, keys: string[]): boolean {
   return false
 }
 
-export const getValue = (obj: any, key: string, defaultValue = ''): unknown =>
+/**
+ * @function getValue
+ * @example
+ * getValue({ a: 'test1' }, 'a') // test1
+ * getValue({ a: 'test1' }, 'b') // null
+ * getValue({ a: 'test1' }, 'b', 'teste2') // 'teste2'
+ */
+export const getValue = (obj: any, key: string, defaultValue = null): any | null =>
   obj && obj[key] ? obj[key] || defaultValue : defaultValue
