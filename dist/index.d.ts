@@ -3,7 +3,7 @@ export { defaultTheme } from "./theme";
 export type ITheme = import("./theme").ITheme;
 export type IThemeAssets = import("./theme").IThemeAssets;
 export { unArray, buffToArray, range, rangeArray } from "./array";
-export { defaultForbidenChars, extractHostname, firstWord, isHexReg, isMAC, isValidTime, removeAll, replaceAll, rmFirstChar, rmLastChar, titleize, toMask } from "./string";
+export { defaultForbidenChars, extractHostname, firstWord, lastWord, isHexReg, isMAC, isValidTime, removeAll, replaceAll, rmFirstChar, rmLastChar, titleize, toMask, formatBytes, urlEncodeObject, camelize } from "./string";
 export { getValue, objectHasKeys } from "./objects";
 export { compareValues, objectWithoutProperties, onlyWithProperties } from "./object";
 export { round, round2, round3 } from "./number";

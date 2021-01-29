@@ -82,8 +82,8 @@ export function toMask(mask: string, number: number | string): string;
 export function isValidTime(str: string): boolean;
 /**
  * @function formatBytes
- * @param {Number} bytes numero em bytes
- * @param {Number} decimals casas decimais
+ * @param {number|string} bytes numero em bytes
+ * @param {number} decimals casas decimais
  * @example
  * // formatBytes(bytes,decimals)
  * formatBytes(1024);       // 1 KB
@@ -91,7 +91,7 @@ export function isValidTime(str: string): boolean;
  * formatBytes(1234);       // 1.21 KB
  * formatBytes(1234, 3);    // 1.205 KB
  */
-export function formatBytes(bytes: number, decimals?: number): string;
+export function formatBytes(bytes: number | string, decimals?: number): string;
 /**
  * @function camelize
  * @param {String} str
@@ -104,5 +104,13 @@ export function formatBytes(bytes: number, decimals?: number): string;
  * // all output "equipmentClassName"
  */
 export function camelize(str: string): string;
+/**
+ * @function urlEncodeObject
+ * @param {Object} object
+ * @returns {String}
+ * @example
+ * urlEncodeObject({foo: 'fooValue', bar: 'barValue'}) // foo=fooValue&bar=barValue
+ */
+export function urlEncodeObject(object: Object): string;
 export const defaultForbidenChars: "'@#$%¨&*()_+{}?^:><|¹²³£¢¬§ªº°;.,~´`=-";
 //# sourceMappingURL=string.d.ts.map
