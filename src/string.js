@@ -40,7 +40,7 @@ export function firstWord(text) {
 export function lastWord(text) {
   if (!text) return ''
   const fullName = text.trim().split(' ')
-  return fullName.slice(-1).join(' ') || ''
+  return fullName.slice(-1).join(' ')
 }
 
 /**
@@ -173,8 +173,8 @@ export function isValidTime(str) {
 
 /**
  * @function formatBytes
- * @param {Number} bytes numero em bytes
- * @param {Number} decimals casas decimais
+ * @param {number|string} bytes numero em bytes
+ * @param {number} decimals casas decimais
  * @example
  * // formatBytes(bytes,decimals)
  * formatBytes(1024);       // 1 KB
@@ -183,15 +183,16 @@ export function isValidTime(str) {
  * formatBytes(1234, 3);    // 1.205 KB
  */
 export function formatBytes(bytes, decimals = 2) {
-  if (bytes === 0) return '0 Bytes'
+  if (!bytes || bytes === 0) return '0 Bytes'
 
   const k = 1024
+  const b = bytes < 0 ? bytes * -1 : bytes
   const dm = decimals < 0 ? 0 : decimals
   const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB']
 
-  const i = Math.floor(Math.log(bytes) / Math.log(k))
+  const i = Math.floor(Math.log(b) / Math.log(k))
 
-  return `${parseFloat((bytes / Math.pow(k, i)).toFixed(dm))} ${sizes[i]}`
+  return `${parseFloat((b / Math.pow(k, i)).toFixed(dm))} ${sizes[i]}`
 }
 
 /**

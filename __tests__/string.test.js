@@ -2,11 +2,14 @@ import {
   rmFirstChar,
   rmLastChar,
   firstWord,
+  lastWord,
+  formatBytes,
   replaceAll,
   removeAll,
   titleize,
   isMAC,
   isHexReg,
+  camelize,
   // isHex
   extractHostname,
   toMask,
@@ -42,6 +45,13 @@ describe('Test UTILS', () => {
     done()
   })
 
+  it('Deveria retornar ultima palavra', done => {
+    expect(lastWord('primeiro segundo')).toEqual('segundo')
+    expect(lastWord('primeiro')).toEqual('primeiro')
+    expect(lastWord('')).toEqual('')
+    done()
+  })
+
   it('Deveria substituir', done => {
     expect(replaceAll('primeiro segundo', ' ')).toEqual('primeiro,segundo')
     expect(replaceAll('primeiro segundo', ' ', '')).toEqual('primeirosegundo')
@@ -73,6 +83,26 @@ describe('Test UTILS', () => {
     done()
   })
 
+  it('Deveria formatar bytes', done => {
+    expect(formatBytes(1024)).toEqual('1 KB')
+    expect(formatBytes('1024')).toEqual('1 KB')
+    expect(formatBytes(1234)).toEqual('1.21 KB')
+    expect(formatBytes(1234, 3)).toEqual('1.205 KB')
+    expect(formatBytes(false)).toEqual('0 Bytes')
+    expect(formatBytes(0)).toEqual('0 Bytes')
+    expect(formatBytes(-2, -1)).toEqual('2 Bytes')
+    done()
+  })
+
+  it('Deveria camelize all', done => {
+    const expected = 'equipmentClassName'
+    expect(camelize('EquipmentClass name')).toEqual(expected)
+    expect(camelize('Equipment className')).toEqual(expected)
+    expect(camelize('equipment class name')).toEqual(expected)
+    expect(camelize('Equipment Class Name')).toEqual(expected)
+    done()
+  })
+
   // it('Deveria validar isHex', (done) => {
   //   expect(isHex('primeiro segundo')).toEqual(false)
   //   expect(isHex('01')).toEqual(true)
@@ -100,9 +130,10 @@ describe('Test UTILS', () => {
   })
 
   it('Deveria retornar URL ecooded time', done => {
-    expect(urlEncodeObject({ foo: 'fooValue', bar: 'barValue' })).toEqual(
-      'foo=fooValue&bar=barValue'
-    )
+    const expected = 'foo=fooValue&bar=barValue'
+    expect(urlEncodeObject({ foo: 'fooValue', bar: 'barValue' })).toEqual(expected)
+    expect(urlEncodeObject(new Date())).toEqual('')
+    expect(urlEncodeObject({})).toEqual('')
     done()
   })
 

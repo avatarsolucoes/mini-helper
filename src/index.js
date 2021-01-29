@@ -4,6 +4,7 @@ export {
   defaultForbidenChars,
   extractHostname,
   firstWord,
+  lastWord,
   // isHex,
   isHexReg,
   isMAC,
@@ -14,7 +15,9 @@ export {
   rmLastChar,
   titleize,
   toMask,
-  urlEncodeObject
+  formatBytes,
+  urlEncodeObject,
+  camelize
 } from './string'
 
 export { getValue, objectHasKeys } from './objects'
