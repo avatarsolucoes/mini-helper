@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.0.4-1](https://github.com/avatarsolucoes/mini-helper/compare/v1.0.4-0...v1.0.4-1) (2021-02-02)
+
+
+### Bug Fixes
+
+* removed node deps ([b89dd7c](https://github.com/avatarsolucoes/mini-helper/commit/b89dd7cae826d4fb12c35d2b38e2a771a181094d))
+
 ### [1.0.4-0](https://github.com/avatarsolucoes/mini-helper/compare/v1.0.3...v1.0.4-0) (2021-02-02)
 
 
