@@ -216,16 +216,16 @@ export function camelize(str) {
 
 /**
  * @function urlEncodeObject
- * @param {Object} object
- * @returns {String}
+ * @param {any} object
+ * @returns {string}
  * @example
  * urlEncodeObject({foo: 'fooValue', bar: 'barValue'}) // foo=fooValue&bar=barValue
  */
 export function urlEncodeObject(object) {
   if (typeof object !== 'object' || object instanceof Date) return ''
   const result = []
-  for (const key in object) {
-    result.push(`${key}=${encodeURIComponent(object[key])}`)
-  }
+  Object.keys(object).forEach(k => {
+    result.push(`${k}=${encodeURIComponent(object[k])}`)
+  })
   return result.length ? result.join('&') : ''
 }
