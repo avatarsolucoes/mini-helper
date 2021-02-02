@@ -1,9 +1,8 @@
+import glob from './glob'
 /* eslint-disable prefer-destructuring */
 export const defaultForbidenChars = "'@#$%¨&*()_+{}?^:><|¹²³£¢¬§ªº°;.,~´`=-"
-
-const glob = require('./global')
 /**
- * Remove the first character
+ * (string) Remove the first character
  * @function rmFirstChar
  * @param {String} str
  * @returns {String} string modified
@@ -12,12 +11,18 @@ export function rmFirstChar(str) {
   return str.slice(1)
 }
 
+/**
+ * (string) Remove the last character
+ * @function rmLastChar
+ * @param {String} str
+ * @returns {String} string modified
+ */
 export function rmLastChar(element) {
   return element.slice(0, element.length - 1)
 }
 
 /**
- * Primeira palavra da sentenca
+ * (string) Primeira palavra da sentenca
  * @function firstWord
  * @param {String} text
  * @returns {String}
@@ -31,7 +36,7 @@ export function firstWord(text) {
 }
 
 /**
- * Ultima palavra da sentenca
+ * (string) Ultima palavra da sentenca
  * @function lastWord
  * @param {String} text
  * @returns {String}
@@ -225,8 +230,8 @@ export function camelize(str) {
 export function urlEncodeObject(object) {
   if (typeof object !== 'object' || object instanceof Date) return ''
   const result = []
-  Object.keys(object).forEach(
-    k => glob.encodeURI && result.push(`${k}=${glob.encodeURI(object[k])}`)
-  )
+  Object.keys(object).forEach(k => {
+    glob && glob.encodeURIComponent && result.push(`${k}=${glob.encodeURIComponent(object[k])}`)
+  })
   return result.length ? result.join('&') : ''
 }

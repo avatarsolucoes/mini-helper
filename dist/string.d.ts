@@ -1,13 +1,19 @@
 /**
- * Remove the first character
+ * (string) Remove the first character
  * @function rmFirstChar
  * @param {String} str
  * @returns {String} string modified
  */
 export function rmFirstChar(str: string): string;
-export function rmLastChar(element: any): any;
 /**
- * Primeira palavra da sentenca
+ * (string) Remove the last character
+ * @function rmLastChar
+ * @param {String} str
+ * @returns {String} string modified
+ */
+export function rmLastChar(element: any): string;
+/**
+ * (string) Primeira palavra da sentenca
  * @function firstWord
  * @param {String} text
  * @returns {String}
@@ -16,7 +22,7 @@ export function rmLastChar(element: any): any;
  */
 export function firstWord(text: string): string;
 /**
- * Ultima palavra da sentenca
+ * (string) Ultima palavra da sentenca
  * @function lastWord
  * @param {String} text
  * @returns {String}
