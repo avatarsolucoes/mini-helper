@@ -231,7 +231,8 @@ export function urlEncodeObject(object) {
   if (typeof object !== 'object' || object instanceof Date) return ''
   const result = []
   Object.keys(object).forEach(k => {
-    glob && glob.encodeURIComponent && result.push(`${k}=${glob.encodeURIComponent(object[k])}`)
+    const value = `${object[k]}`
+    glob && glob.encodeURIComponent && result.push(`${k}=${glob.encodeURIComponent(value)}`)
   })
   return result.length ? result.join('&') : ''
 }
