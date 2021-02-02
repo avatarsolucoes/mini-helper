@@ -106,11 +106,11 @@ export function formatBytes(bytes: number | string, decimals?: number): string;
 export function camelize(str: string): string;
 /**
  * @function urlEncodeObject
- * @param {Object} object
- * @returns {String}
+ * @param {any} object
+ * @returns {string}
  * @example
  * urlEncodeObject({foo: 'fooValue', bar: 'barValue'}) // foo=fooValue&bar=barValue
  */
-export function urlEncodeObject(object: Object): string;
+export function urlEncodeObject(object: any): string;
 export const defaultForbidenChars: "'@#$%¨&*()_+{}?^:><|¹²³£¢¬§ªº°;.,~´`=-";
 //# sourceMappingURL=string.d.ts.map
