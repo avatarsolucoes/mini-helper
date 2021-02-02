@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.0.4-0](https://github.com/avatarsolucoes/mini-helper/compare/v1.0.3...v1.0.4-0) (2021-02-02)
+
+
+### Bug Fixes
+
+* encodeURIComponent ([481cdaf](https://github.com/avatarsolucoes/mini-helper/commit/481cdafbb3c7cfd87ac14a81410b818e28711a58))
+* window global ([6b675c7](https://github.com/avatarsolucoes/mini-helper/commit/6b675c759e47e58e8381d95b2e9c3f9c551a91b4))
+
 ### [1.0.3](https://github.com/avatarsolucoes/mini-helper/compare/v1.0.2...v1.0.3) (2021-02-02)
 
 ### [1.0.2](https://github.com/avatarsolucoes/mini-helper/compare/v1.0.1...v1.0.2) (2021-02-02)
