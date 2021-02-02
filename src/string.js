@@ -1,6 +1,7 @@
 /* eslint-disable prefer-destructuring */
 export const defaultForbidenChars = "'@#$%¨&*()_+{}?^:><|¹²³£¢¬§ªº°;.,~´`=-"
 
+const glob = require('./global')
 /**
  * Remove the first character
  * @function rmFirstChar
@@ -224,8 +225,8 @@ export function camelize(str) {
 export function urlEncodeObject(object) {
   if (typeof object !== 'object' || object instanceof Date) return ''
   const result = []
-  Object.keys(object).forEach(k => {
-    result.push(`${k}=${encodeURIComponent(object[k])}`)
-  })
+  Object.keys(object).forEach(
+    k => glob.encodeURI && result.push(`${k}=${glob.encodeURI(object[k])}`)
+  )
   return result.length ? result.join('&') : ''
 }
