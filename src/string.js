@@ -236,3 +236,14 @@ export function urlEncodeObject(object) {
   })
   return result.length ? result.join('&') : ''
 }
+
+/**
+ * @function isEmail
+ * @param {String} value e-mail string
+ * @returns {boolean}
+ */
+export function isEmail(value) {
+  // eslint-disable-next-line prefer-regex-literals
+  const reg = new RegExp(/^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/)
+  return value && reg.test(value)
+}

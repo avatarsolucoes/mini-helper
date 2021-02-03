@@ -14,7 +14,8 @@ import {
   extractHostname,
   toMask,
   isValidTime,
-  urlEncodeObject
+  urlEncodeObject,
+  isEmail
 } from '../src'
 
 describe('Test UTILS', () => {
@@ -134,6 +135,12 @@ describe('Test UTILS', () => {
     expect(urlEncodeObject({ foo: 'fooValue', bar: 'barValue' })).toEqual(expected)
     expect(urlEncodeObject(new Date())).toEqual('')
     expect(urlEncodeObject({})).toEqual('')
+    done()
+  })
+
+  it('Deveria verificar email', done => {
+    expect(isEmail('teste@teste.com')).toEqual(true)
+    expect(isEmail('teste')).toEqual(false)
     done()
   })
 

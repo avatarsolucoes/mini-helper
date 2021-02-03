@@ -2,22 +2,34 @@
 import { forceArray } from './array'
 
 /**
- * Check if there is ownership in an object
- * @function objectHasKeys
- * @param {Object} obj
- * @param {Array<String>} keys
+ * Simple object check.
+ * @param item
  * @returns {boolean}
- * @example
- * objectHasKeys({ a: 1, b: 2}, ['b','c']) // true match 'b'
- * objectHasKeys({ a: 1, b: 2}, ['c']) // false
  */
-export function objectHasKeys(obj, keys) {
-  const keysO = Object.keys(obj)
-  for (let i = 0; i < keysO.length; i++) {
-    if (!keys.includes(keysO[i])) return true
-  }
-  return false
+export function isObject(item) {
+  return item && typeof item === 'object' && !Array.isArray(item) && !(item instanceof Date)
 }
+
+// /**
+//  * Check if there is ownership in an object
+//  * @function objectHasKeys
+//  * @param {Object} obj
+//  * @param {Array<String>} keys
+//  * @returns {boolean}
+//  * @example
+//  * objectHasKeys({ a: 1, b: 2}, ['b','c']) // true match 'b'
+//  * objectHasKeys({ a: 1, b: 2}, ['c']) // false
+//  */
+// export function objectHasKeys(obj, keys) {
+//   const keysO = Object.keys(obj)
+//   const k = forceArray(keys)
+//   for (let i = 0; i < keysO.length; i++) {
+//     if (k.includes(keysO[i])) {
+//       return true
+//     }
+//   }
+//   return false
+// }
 
 /**
  * Get object by omitting properties
@@ -112,4 +124,28 @@ export function compareValues(key, order = 'asc') {
     }
     return order === 'desc' ? comparison * -1 : comparison
   }
+}
+
+/**
+ * Deep merge objects.
+ * @param target
+ * @param sources
+ */
+export function mergeDeep(target, ...sources) {
+  if (!sources.length) return target
+  const source = sources.shift()
+
+  if (isObject(target) && isObject(source)) {
+    const keys = Object.keys(source)
+    for (let i = 0; i < keys.length; i++) {
+      const key = keys[i]
+      if (isObject(source[key])) {
+        if (!target[key]) Object.assign(target, { [key]: {} })
+        mergeDeep(target[key], source[key])
+      } else {
+        Object.assign(target, { [key]: source[key] })
+      }
+    }
+  }
+  return mergeDeep(target, ...sources)
 }

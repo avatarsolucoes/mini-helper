@@ -17,11 +17,18 @@ export {
   toMask,
   formatBytes,
   urlEncodeObject,
-  camelize
+  camelize,
+  isEmail
 } from './string'
 
 export { getValue, objectHasKeys } from './objects'
-export { compareValues, objectWithoutProperties, onlyWithProperties } from './object'
+export {
+  compareValues,
+  objectWithoutProperties,
+  onlyWithProperties,
+  isObject,
+  mergeDeep
+} from './object'
 export { round, round2, round3 } from './number'
 export {
   generateIdPass,

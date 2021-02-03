@@ -10,7 +10,7 @@ module.exports = {
   transform: {
     '.(js|jsx|ts|tsx)': 'babel-jest'
   },
-  collectCoverageFrom: ['src/**/*.js', '!**/I[A-Z]*.{ts}', '!**/*d*.{ts}'],
+  collectCoverageFrom: ['src/**/*.js', 'src/**/*.ts', '!**/I[A-Z]*.{ts}', '!**/*d*.{ts}'],
   coverageDirectory: 'coverage',
   coveragePathIgnorePatterns: ['/node_modules/', 'setup*.js', '/__tests__/', '/*.d.ts/'],
   coverageReporters: ['text', 'lcov'],

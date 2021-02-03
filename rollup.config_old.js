@@ -2,6 +2,11 @@ import babel from 'rollup-plugin-babel'
 import commonjs from 'rollup-plugin-commonjs'
 import resolve from 'rollup-plugin-node-resolve'
 import { terser } from 'rollup-plugin-terser'
+// import url from '@rollup/plugin-url'
+// import svgr from '@svgr/rollup'
+// import postcss from 'rollup-plugin-postcss'
+// import postcssUrl from 'postcss-url'
+// import postcssImport from 'postcss-import'
 import typescript from 'rollup-plugin-typescript2'
 import pkg from './package.json'
 
@@ -18,6 +23,35 @@ function getExternal() {
   const allExternal = [...external, ...Object.keys(pkg.dependencies || {})]
   return makeExternalPredicate(allExternal)
 }
+
+const myPlugins = [
+  babel({
+    exclude: 'node_modules/**'
+  }),
+  typescript({
+    tsconfigOverride: {
+      compilerOptions: {
+        declaration: true,
+        declarationDir: './dist/index',
+        declarationMap: true
+      },
+      include: ['./src'],
+      exclude: [
+        'node_modules',
+        'build',
+        'dist',
+        'rollup.config.js',
+        'src/__tests__',
+        'src/setup*.js'
+      ]
+    },
+    rollupCommonJSResolveHack: false,
+    clean: true
+  }),
+  resolve(),
+  commonjs(),
+  terser()
+]
 
 export default {
   input: 'src/index.js',
@@ -36,33 +70,6 @@ export default {
       sourcemap: true
     }
   ],
-  plugins: [
-    babel({
-      exclude: 'node_modules/**'
-    }),
-    typescript({
-      tsconfigOverride: {
-        compilerOptions: {
-          declaration: true,
-          declarationDir: './dist/index',
-          declarationMap: true
-        },
-        include: ['./src'],
-        exclude: [
-          'node_modules',
-          'build',
-          'dist',
-          'example',
-          'rollup.config.js',
-          'src/__tests__',
-          'src/setup*.js'
-        ]
-      },
-      rollupCommonJSResolveHack: false,
-      clean: true
-    }),
-    resolve(),
-    commonjs(),
-    terser()
-  ]
+  // preserveModules: true,
+  plugins: myPlugins
 }
