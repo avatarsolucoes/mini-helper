@@ -14,5 +14,10 @@ export function objectHasKeys<T>(obj: T | Object, keys: string[]): boolean {
  * getValue({ a: 'test1' }, 'b') // null
  * getValue({ a: 'test1' }, 'b', 'teste2') // 'teste2'
  */
-export const getValue = (obj: any, key: string, defaultValue = null): any | null =>
-  obj && obj[key] ? obj[key] || defaultValue : defaultValue
+export function getValue<T, K>(
+  obj: T,
+  key: keyof T,
+  defaultValue: K | null = null
+): T[keyof T] | K | null {
+  return obj && obj[key] ? obj[key] || defaultValue : defaultValue
+}
