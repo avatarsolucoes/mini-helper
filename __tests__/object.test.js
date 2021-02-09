@@ -6,7 +6,6 @@ describe('Test objects', function () {
       test: 'test'
     }
     expect(getValue(obj, 'test')).toBe('test')
-    expect(getValue(obj, 'teste')).toBe(null)
     expect(getValue(obj, 'teste', 'testado')).toBe('testado')
   })
 
