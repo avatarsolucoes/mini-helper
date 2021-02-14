@@ -15,7 +15,8 @@ import {
   toMask,
   isValidTime,
   urlEncodeObject,
-  isEmail
+  isEmail,
+  validURL
 } from '../src'
 
 describe('Test UTILS', () => {
@@ -141,6 +142,16 @@ describe('Test UTILS', () => {
   it('Deveria verificar email', done => {
     expect(isEmail('teste@teste.com')).toEqual(true)
     expect(isEmail('teste')).toEqual(false)
+    done()
+  })
+
+  it('Deveria verificar URL válida', done => {
+    expect(validURL('teste@teste.com')).toEqual(false)
+    expect(validURL('teste')).toEqual(false)
+    expect(validURL(null)).toEqual(false)
+    expect(validURL('http://example.com')).toEqual(true)
+    expect(validURL(['http://example1.com', 'http://example2.com'])).toEqual([true, true])
+    expect(validURL(['http://example.com', 'abcde'])).toEqual([true, false])
     done()
   })
 

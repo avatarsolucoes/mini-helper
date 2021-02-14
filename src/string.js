@@ -247,3 +247,27 @@ export function isEmail(value) {
   const reg = new RegExp(/^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/)
   return value && reg.test(value)
 }
+
+/**
+ * @function validURL
+ * @param {string|Array<string>} str
+ * @returns {boolean|Array<boolean>}
+ * @example
+ * validURL('http://example.com') // true
+ * validURL(['http://example1.com', 'abcde']) // [true, false]
+ */
+export function validURL(str) {
+  if (Array.isArray(str)) return str.map(s => validURL(s))
+
+  const pattern = new RegExp(
+    '^(https?:\\/\\/)?' + // protocol
+      '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|' + // domain name
+      '((\\d{1,3}\\.){3}\\d{1,3}))' + // OR ip (v4) address
+      '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*' + // port and path
+      '(\\?[;&a-z\\d%_.~+=-]*)?' + // query string
+      '(\\#[-a-z\\d_]*)?$',
+    'i'
+  )
+
+  return !!pattern.test(str)
+}

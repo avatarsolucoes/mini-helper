@@ -18,7 +18,8 @@ export {
   formatBytes,
   urlEncodeObject,
   camelize,
-  isEmail
+  isEmail,
+  validURL
 } from './string'
 
 export { getValue, objectHasKeys } from './objects'
