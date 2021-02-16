@@ -1,4 +1,14 @@
-import { forceArray, unArray, range, rangeArray, buffToArray } from '../src'
+import {
+  forceArray,
+  unArray,
+  range,
+  rangeArray,
+  buffToArray,
+  compareValues,
+  medianInArray,
+  averageInArray,
+  sumArray
+} from '../src'
 
 describe('Test UTILS', () => {
   it('Deveria retornar um array', done => {
@@ -39,6 +49,50 @@ describe('Test UTILS', () => {
     expect(buffToArray(buf2)).toEqual(expect.arrayContaining(expected))
     expect(buffToArray(buf3)).toEqual(expect.arrayContaining(expected))
     expect(buffToArray()).toEqual(expect.arrayContaining([]))
+
+    done()
+  })
+
+  it('Deveria classificar um Array', done => {
+    const arrtest = [{ id: 1 }, { id: 3 }, { id: 2 }]
+
+    expect(arrtest.sort(compareValues('id', 'asc'))).toEqual(
+      expect.arrayContaining([{ id: 1 }, { id: 2 }, { id: 3 }])
+    )
+    expect(arrtest.sort(compareValues('id', 'desc'))).toEqual(
+      expect.arrayContaining([{ id: 3 }, { id: 2 }, { id: 1 }])
+    )
+
+    done()
+  })
+
+  it('Deveria retornar mediana', done => {
+    expect(medianInArray('2')).toEqual(0)
+    expect(medianInArray(2)).toEqual(2)
+    expect(medianInArray([2, 8, 2])).toEqual(2)
+    expect(medianInArray([2, 8, 2, 8])).toEqual(5)
+    expect(medianInArray([2, 8, 2, 8, 0], true)).toEqual(2)
+    expect(medianInArray([2, 8, 2, 8, 0])).toEqual(5)
+
+    done()
+  })
+
+  it('Deveria retornar media', done => {
+    expect(averageInArray('2')).toEqual(0)
+    expect(averageInArray(2)).toEqual(2)
+    expect(averageInArray([2, 8, 2])).toEqual(4)
+    expect(averageInArray([2, 8, 2, 8, 10])).toEqual(6)
+    expect(averageInArray([2, 8, 2, 8, 0], true)).toEqual(4)
+    expect(averageInArray([2, 8, 2, 8, 0])).toEqual(5)
+
+    done()
+  })
+
+  it('Deveria somar elementos array', done => {
+    expect(sumArray([2, 4, 2])).toEqual(8)
+    expect(sumArray([2, 4, '2'], true)).toEqual(8)
+    expect(sumArray([2, 4, '2'], false)).toEqual(6)
+    expect(sumArray(['1', 'teste', 2], true)).toEqual(3)
 
     done()
   })

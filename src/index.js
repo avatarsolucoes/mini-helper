@@ -1,5 +1,6 @@
 export { unArray, buffToArray, range, rangeArray } from './array'
 export { forceArray } from './arrayts'
+export { medianInArray, averageInArray, sumArray } from './array'
 export {
   defaultForbidenChars,
   extractHostname,

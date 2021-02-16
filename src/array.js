@@ -1,16 +1,17 @@
 import chunk from 'chunk'
+import { forceArray } from './arrayts'
 
-/**
- * Force any values an array
- * @function forceArray
- * @param {any} value
- * @return {Array}
- * @example
- * forceArray('1') // return ['1']
- */
-export function forceArray(value = []) {
-  return !Array.isArray(value) ? [value] : value
-}
+// /**
+//  * Force any values an array
+//  * @function forceArray
+//  * @param {any} value
+//  * @return {Array}
+//  * @example
+//  * forceArray('1') // return ['1']
+//  */
+// export function forceArray(value = []) {
+//   return !Array.isArray(value) ? [value] : value
+// }
 
 /**
  * If array return first item
@@ -70,8 +71,8 @@ export function buffToArray(buf, size = 2) {
  * @param {Boolean} withZero
  * @returns {Number}
  */
-export function medianInArray(arr, withZero) {
-  if (!Array.isArray(arr)) return 0
+export function medianInArray(arr, withZero = false) {
+  if (!Array.isArray(arr)) return typeof arr === 'number' ? arr : 0
   const array = withZero ? arr.map(a => a || 0) : arr.filter(a => !!(a && a > 0))
   array.sort((a, b) => a - b)
   const lowMid = Math.floor((array.length - 1) / 2)
@@ -86,7 +87,7 @@ export function medianInArray(arr, withZero) {
  * @returns {Number}
  */
 export function averageInArray(arr, withZero) {
-  if (!Array.isArray(arr)) return 0
+  if (!Array.isArray(arr)) return typeof arr === 'number' ? arr : 0
   const array = withZero ? arr.map(a => a || 0) : arr.filter(f => f)
   return array.reduce((a, b) => a + b, 0) / array.length
 }
@@ -103,12 +104,14 @@ export function averageInArray(arr, withZero) {
  */
 export function sumArray(arrOfNumber, checkNumber) {
   const sum = (t, n) => {
-    if (checkNumber) return t + typeof n === 'number' ? n : parseInt(n, 10) || 0
-    return t + n
+    if (typeof n === 'number') return t + n
+
+    if (checkNumber) {
+      const s = parseInt(n, 10) || 0
+      return t + s
+    }
+
+    return t
   }
   return forceArray(arrOfNumber).reduce(sum)
-}
-
-export function includesInArrayObject(arrObject, key, value) {
-  return arrObject.some(el => !!(key in el && el[key] === value))
 }
