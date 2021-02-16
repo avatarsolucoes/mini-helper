@@ -41,7 +41,9 @@
     "build": "rollup -c",
     "start": "rollup -c -w"
   },
-  "dependencies": {
+  "dependencies": {},
+  "peerDependencies": {
+    "crypto": "1.0.1",
     "base64-img": "^1.0.4",
     "chunk": "^0.0.3",
     "get-random-values": "^1.2.2",
@@ -49,9 +51,6 @@
     "moment": "^2.29.1",
     "moment-timezone": "^0.5.32",
     "uuid": "^8.3.2"
-  },
-  "peerDependencies": {
-    "crypto": "1.0.1"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.12.7",
