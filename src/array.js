@@ -104,14 +104,9 @@ export function averageInArray(arr, withZero) {
  */
 export function sumArray(arrOfNumber, checkNumber) {
   const sum = (t, n) => {
-    if (typeof n === 'number') return t + n
-
-    if (checkNumber) {
-      const s = parseInt(n, 10) || 0
-      return t + s
-    }
-
+    if (n && typeof n === 'number' && n !== 0) return t + n
+    if (n && typeof n === 'string' && checkNumber) return t + (parseInt(n, 10) || 0)
     return t
   }
-  return forceArray(arrOfNumber).reduce(sum)
+  return forceArray(arrOfNumber).reduce(sum, 0)
 }

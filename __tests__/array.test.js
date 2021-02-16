@@ -93,7 +93,7 @@ describe('Test UTILS', () => {
     expect(sumArray([2, 4, '2'], true)).toEqual(8)
     expect(sumArray([2, 4, '2'], false)).toEqual(6)
     expect(sumArray(['1', 'teste', 2], true)).toEqual(3)
-
+    expect(sumArray(['1', 'teste', 2, null], true)).toEqual(3)
     done()
   })
 })
