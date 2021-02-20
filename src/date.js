@@ -86,11 +86,13 @@ export function diffExpires(expires, dateNow = Date.now()) {
  * @example
  * dateToStrTimeZone(new Date(), 'YYYY-MM-DD HH:mm:ss', 'America/Fortaleza');
  */
-export function dateToStrTimeZone(date, to, timezone) {
-  if (!timezone) return moment(date).format(to || 'YYYY-MM-DD HH:mm:ss')
-  return moment(date)
-    .tz(timezone || 'America/Fortaleza')
-    .format(to || 'YYYY-MM-DD HH:mm:ss')
+export function dateToStrTimeZone(
+  date,
+  to = 'YYYY-MM-DD HH:mm:ss',
+  timezone = 'America/Fortaleza'
+) {
+  if (!timezone) return moment(date).format(to)
+  return moment(date).tz(timezone).format(to)
 }
 
 /**
