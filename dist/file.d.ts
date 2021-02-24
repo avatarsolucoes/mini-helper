@@ -2,7 +2,7 @@
  * @function fileHash
  * @param {string} filename
  * @param {'sha1'|'md5'|'sha256'|'sha512'} algorithm
- * @returns {Promise<String>|false}
+ * @returns {Promise<string>|false}
  */
 export function fileHash(filename: string, algorithm?: 'sha1' | 'md5' | 'sha256' | 'sha512'): Promise<string> | false;
 /**

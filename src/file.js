@@ -2,11 +2,10 @@
  * @function fileHash
  * @param {string} filename
  * @param {'sha1'|'md5'|'sha256'|'sha512'} algorithm
- * @returns {Promise<String>|false}
+ * @returns {Promise<string>|false}
  */
-export function fileHash(filename, algorithm = 'md5') {
-  // eslint-disable-next-line consistent-return
-  return new Promise(resolve => {
+export async function fileHash(filename, algorithm = 'md5') {
+  const result = new Promise((resolve, reject) => {
     try {
       const { createHash } = require('crypto')
       const fs = require('fs')
@@ -18,10 +17,12 @@ export function fileHash(filename, algorithm = 'md5') {
         const hash = shasum.digest('hex')
         return resolve(hash)
       })
-    } catch {
-      return false
+    } catch (error) {
+      return reject(error)
     }
   })
+
+  return result
 }
 
 /**

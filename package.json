@@ -41,6 +41,7 @@
     "build": "rollup -c",
     "start": "rollup -c -w"
   },
+  "browserslist": "> 0.25%, not dead",
   "dependencies": {},
   "peerDependencies": {
     "base64-img": "^1.0.4",
