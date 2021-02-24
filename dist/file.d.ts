@@ -52,4 +52,6 @@ export function renameFile(oldPath: string, newPath: string, force: boolean): bo
  * @returns {Promise<boolean>}
  */
 export function copyFile(source: string, target: string): Promise<boolean>;
+export const isNode: Function;
+export const isBrowser: Function;
 //# sourceMappingURL=file.d.ts.map

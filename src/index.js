@@ -44,8 +44,6 @@ export {
   isMD5
 } from './ramdom'
 
-// export { convertSvgToPng, toBase64Img } from './image'
-// export { deleteFile, extName, fileExists, fileHash, fileParse, pathJoin, renameFile } from './file'
 export {
   dateToStrTimeZone,
   diffExpires,
@@ -79,7 +77,9 @@ export {
   deleteFile,
   fileParse,
   pathJoin,
-  copyFile
+  copyFile,
+  isBrowser,
+  isNode
 } from './file'
 
 /**

@@ -11,5 +11,5 @@ export { round, round2, round3 } from "./number";
 export { generateIdPass, getInRamdom, getRamdomHex, getRamdomStr, getRandomArbitrary, getRandomInt, hashMD5, hashPassword, isMD5 } from "./ramdom";
 export { dateToStrTimeZone, diffExpires, extractOfDateTime, getUpTime, rangedMonth, strDateFromTo, timeRest } from "./date";
 export { ASCToHex, hex2a, hexToASC, hexToAlphaNumeric, hexToInt, intToHex, intToHex2, isDefined, notNull, tryInteger } from "./variables";
-export { fileExists, fileHash, extName, renameFile, deleteFile, fileParse, pathJoin, copyFile } from "./file";
+export { fileExists, fileHash, extName, renameFile, deleteFile, fileParse, pathJoin, copyFile, isBrowser, isNode } from "./file";
 //# sourceMappingURL=index.d.ts.map

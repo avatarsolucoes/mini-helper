@@ -1,3 +1,9 @@
+// eslint-disable-next-line no-new-func
+export const isNode = new Function('try {return this===global;}catch(e){return false;}')
+
+// eslint-disable-next-line no-new-func
+export const isBrowser = new Function('try {return this===window;}catch(e){ return false;}')
+
 /**
  * @function fileHash
  * @param {string} filename
@@ -5,6 +11,7 @@
  * @returns {Promise<string>|false}
  */
 export async function fileHash(filename, algorithm = 'md5') {
+  if (isBrowser()) return false
   const result = new Promise((resolve, reject) => {
     try {
       const { createHash } = require('crypto')
@@ -32,6 +39,7 @@ export async function fileHash(filename, algorithm = 'md5') {
  * @returns {import('path').ParsedPath}
  */
 export function fileParse(filePath) {
+  if (isBrowser()) return false
   const { parse } = require('path')
   return parse(filePath) || false
 }
@@ -43,6 +51,7 @@ export function fileParse(filePath) {
  * @returns {String}
  */
 export function pathJoin(...paths) {
+  if (isBrowser()) return false
   const { join } = require('path')
   return join(...paths)
 }
@@ -54,6 +63,7 @@ export function pathJoin(...paths) {
  * @returns {String} extension ex: '.png'
  */
 export function extName(filePath) {
+  if (isBrowser()) return false
   const { extname } = require('path')
   return extname(filePath) || ''
 }
@@ -63,6 +73,7 @@ export function extName(filePath) {
  * @param {string} filePath
  */
 export function fileExists(filePath) {
+  if (isBrowser()) return false
   try {
     const fs = require('fs')
     return !!fs.existsSync(filePath)
@@ -77,6 +88,7 @@ export function fileExists(filePath) {
  * @returns {Promise<Boolean>}
  */
 export async function deleteFile(filePath) {
+  if (isBrowser()) return false
   try {
     const fs = require('fs')
     if (fileExists(filePath)) {
@@ -97,6 +109,7 @@ export async function deleteFile(filePath) {
  * @returns {Boolean}
  */
 export function renameFile(oldPath, newPath, force) {
+  if (isBrowser()) return false
   try {
     const fs = require('fs')
     if (force && fileExists(newPath)) {
@@ -116,13 +129,14 @@ export function renameFile(oldPath, newPath, force) {
  * @returns {Promise<boolean>}
  */
 export async function copyFile(source, target) {
-  let result = false
-  try {
-    const { copyFile } = require('fs/promises')
-    await copyFile(source, target)
-    result = true
-  } catch {
-    result = false
-  }
+  if (isBrowser()) return false
+
+  const result = await new Promise(resolve => {
+    const { copyFile } = require('fs')
+    copyFile(source, target, err => {
+      if (err) return resolve(false)
+      return resolve(true)
+    })
+  })
   return result
 }
