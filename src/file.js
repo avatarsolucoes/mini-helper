@@ -1,6 +1,3 @@
-import path from 'path'
-import crypto from 'crypto'
-
 /**
  * @function fileHash
  * @param {string} filename
@@ -11,12 +8,11 @@ export function fileHash(filename, algorithm = 'md5') {
   // eslint-disable-next-line consistent-return
   return new Promise(resolve => {
     try {
+      const { createHash } = require('crypto')
       const fs = require('fs')
-      const shasum = crypto.createHash(algorithm)
+      const shasum = createHash(algorithm)
       const s = fs.ReadStream(filename)
-      s.on('data', data => {
-        shasum.update(data)
-      })
+      s.on('data', data => shasum.update(data))
       // making digest
       s.on('end', () => {
         const hash = shasum.digest('hex')
@@ -35,7 +31,8 @@ export function fileHash(filename, algorithm = 'md5') {
  * @returns {import('path').ParsedPath}
  */
 export function fileParse(filePath) {
-  return path.parse(filePath) || false
+  const { parse } = require('path')
+  return parse(filePath) || false
 }
 
 /**
@@ -45,7 +42,8 @@ export function fileParse(filePath) {
  * @returns {String}
  */
 export function pathJoin(...paths) {
-  return path.join(...paths)
+  const { join } = require('path')
+  return join(...paths)
 }
 
 /**
@@ -55,7 +53,8 @@ export function pathJoin(...paths) {
  * @returns {String} extension ex: '.png'
  */
 export function extName(filePath) {
-  return path.extname(filePath) || ''
+  const { extname } = require('path')
+  return extname(filePath) || ''
 }
 
 /**

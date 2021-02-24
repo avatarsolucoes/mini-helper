@@ -45,4 +45,11 @@ export function deleteFile(filePath: string): Promise<boolean>;
  * @returns {Boolean}
  */
 export function renameFile(oldPath: string, newPath: string, force: boolean): boolean;
+/**
+ * @function copyFile
+ * @param {string} source
+ * @param {string} target
+ * @returns {Promise<boolean>}
+ */
+export function copyFile(source: string, target: string): Promise<boolean>;
 //# sourceMappingURL=file.d.ts.map

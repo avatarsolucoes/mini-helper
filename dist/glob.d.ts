@@ -1,3 +1,3 @@
 export default g;
-declare const g: (Window & typeof globalThis) | (NodeJS.Global & typeof globalThis) | undefined;
+declare const g: false | (Window & typeof globalThis) | (NodeJS.Global & typeof globalThis);
 //# sourceMappingURL=glob.d.ts.map

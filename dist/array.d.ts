@@ -1,13 +1,4 @@
 /**
- * Force any values an array
- * @function forceArray
- * @param {any} value
- * @return {Array}
- * @example
- * forceArray('1') // return ['1']
- */
-export function forceArray(value?: any): any[];
-/**
  * If array return first item
  * @function unArray
  * @param {Array} arr
@@ -44,7 +35,7 @@ export function buffToArray(buf: Buffer | ArrayBuffer | string, size?: number): 
  * @param {Boolean} withZero
  * @returns {Number}
  */
-export function medianInArray(arr: Array<number>, withZero: boolean): number;
+export function medianInArray(arr: Array<number>, withZero?: boolean): number;
 /**
  * @function averageInArray
  * @param {Array<Number>} arr array of Numbers
@@ -63,5 +54,4 @@ export function averageInArray(arr: Array<number>, withZero: boolean): number;
  * sumArray(['1','teste', 2], true) // return 3
  */
 export function sumArray(arrOfNumber: Array<number>, checkNumber: boolean): number;
-export function includesInArrayObject(arrObject: any, key: any, value: any): any;
 //# sourceMappingURL=array.d.ts.map

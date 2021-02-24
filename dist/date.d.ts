@@ -20,7 +20,7 @@ export function diffExpires(expires: number, dateNow?: number): number;
  * @example
  * dateToStrTimeZone(new Date(), 'YYYY-MM-DD HH:mm:ss', 'America/Fortaleza');
  */
-export function dateToStrTimeZone(date: string | Date, to: string, timezone: string): string;
+export function dateToStrTimeZone(date: string | Date, to?: string, timezone?: string): string;
 /**
  *
  * @param {String} strdate

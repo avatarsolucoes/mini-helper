@@ -1,14 +1,9 @@
 /**
- * Check if there is ownership in an object
- * @function objectHasKeys
- * @param {Object} obj
- * @param {Array<String>} keys
+ * Simple object check.
+ * @param item
  * @returns {boolean}
- * @example
- * objectHasKeys({ a: 1, b: 2}, ['b','c']) // true match 'b'
- * objectHasKeys({ a: 1, b: 2}, ['c']) // false
  */
-export function objectHasKeys(obj: Object, keys: Array<string>): boolean;
+export function isObject(item: any): boolean;
 /**
  * Get object by omitting properties
  * @function objectWithoutProperties
@@ -23,15 +18,15 @@ export function objectWithoutProperties(obj: Object, keys: Array<string>): Objec
 /**
  * Compares object and returns only existing keys
  * @function onlyWithProperties
- * @param {Object} obj
- * @param {Array<string>|Object|String} keys
- * @returns {Object}
+ * @param {object|Array<object>} obj
+ * @param {Array<string>|Object|string} keys
+ * @returns {object|Array<object>}
  * @example
  * onlyWithProperties({ a: 1, b: 2, c: 3 }, ['b']) // produce { b: 2 }
  * onlyWithProperties({ a: 1, b: 2, c: 3 }, { b: 1 }) // produce { b: 2 }
  * onlyWithProperties({ a: 1, b: 2, c: 3 }, 'b') // produce { b: 2 }
  */
-export function onlyWithProperties(obj: Object, keys?: Array<string> | Object | string): Object;
+export function onlyWithProperties(obj: object | Array<object>, keys?: Array<string> | Object | string): object | Array<object>;
 /**
  * @typedef {Object} replaceObjectOptions
  * @property {Boolean} clone clone this
@@ -55,6 +50,12 @@ export function onlyWithProperties(obj: Object, keys?: Array<string> | Object | 
  * myArray.sort(compareValues('name', 'desc'));
  */
 export function compareValues(key: string, order?: string): (a: any, b: any) => number;
+/**
+ * Deep merge objects.
+ * @param target
+ * @param sources
+ */
+export function mergeDeep(target: any, ...sources: any[]): any;
 export type replaceObjectOptions = {
     /**
      * clone this

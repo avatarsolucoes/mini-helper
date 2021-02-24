@@ -118,5 +118,20 @@ export function camelize(str: string): string;
  * urlEncodeObject({foo: 'fooValue', bar: 'barValue'}) // foo=fooValue&bar=barValue
  */
 export function urlEncodeObject(object: any): string;
+/**
+ * @function isEmail
+ * @param {String} value e-mail string
+ * @returns {boolean}
+ */
+export function isEmail(value: string): boolean;
+/**
+ * @function validURL
+ * @param {string|Array<string>} str
+ * @returns {boolean|Array<boolean>}
+ * @example
+ * validURL('http://example.com') // true
+ * validURL(['http://example1.com', 'abcde']) // [true, false]
+ */
+export function validURL(str: string | Array<string>): boolean | Array<boolean>;
 export const defaultForbidenChars: "'@#$%¨&*()_+{}?^:><|¹²³£¢¬§ªº°;.,~´`=-";
 //# sourceMappingURL=string.d.ts.map
