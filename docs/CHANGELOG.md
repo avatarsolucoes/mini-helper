@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.0.5](https://github.com/avatarsolucoes/mini-helper/compare/v1.0.4...v1.0.5) (2021-02-24)
+
+
+### Features
+
+* added array functions ([f33a12f](https://github.com/avatarsolucoes/mini-helper/commit/f33a12f7bccb82ad9b77ee0863dd372a483d3093))
+* added function object, file ([6657cab](https://github.com/avatarsolucoes/mini-helper/commit/6657cab6b47fb4ac60556657254c29aabd2a053b))
+* **string:** added function to check URL ([fd6d94e](https://github.com/avatarsolucoes/mini-helper/commit/fd6d94e517fd6f2fe366eea0a0629908ecad1ca7))
+* object functions ([fea1260](https://github.com/avatarsolucoes/mini-helper/commit/fea1260115eaea203e54e5cf5b7ec9071dbcd533))
+
+
+### Bug Fixes
+
+* default values dateToStrTimeZone ([444f495](https://github.com/avatarsolucoes/mini-helper/commit/444f4952f8f90d2b4389ad479e43ff23c646165e))
+* **array:** return sumArray ([0752180](https://github.com/avatarsolucoes/mini-helper/commit/07521803fb8536094ae4b6810050dc04b0976909))
+* remove dependecies ([6db6b32](https://github.com/avatarsolucoes/mini-helper/commit/6db6b32f6a3dc09b61273b618b47444192d2de75))
+
 ### [1.0.4](https://github.com/avatarsolucoes/mini-helper/compare/v1.0.4-1...v1.0.4) (2021-02-02)
 
 
