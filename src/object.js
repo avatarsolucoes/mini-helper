@@ -1,5 +1,5 @@
 // import _ from 'lodash'
-import { forceArray } from './array'
+import { forceArray } from './arrayts'
 
 /**
  * Simple object check.
@@ -54,22 +54,29 @@ export function objectWithoutProperties(obj, keys) {
 /**
  * Compares object and returns only existing keys
  * @function onlyWithProperties
- * @param {Object} obj
- * @param {Array<string>|Object|String} keys
- * @returns {Object}
+ * @param {object|Array<object>} obj
+ * @param {Array<string>|Object|string} keys
+ * @returns {object|Array<object>}
  * @example
  * onlyWithProperties({ a: 1, b: 2, c: 3 }, ['b']) // produce { b: 2 }
  * onlyWithProperties({ a: 1, b: 2, c: 3 }, { b: 1 }) // produce { b: 2 }
  * onlyWithProperties({ a: 1, b: 2, c: 3 }, 'b') // produce { b: 2 }
  */
 export function onlyWithProperties(obj, keys = []) {
+  if (Array.isArray(obj)) return obj.map(o => onlyWithProperties(o, keys))
+  if (typeof obj !== 'object') return {}
+
   const target = {}
-  const keysCompare = forceArray(typeof keys === 'object' ? Object.keys(keys) : keys)
-  const keysO = Object.keys(obj)
-  for (let i = 0; i < keysO.length; i++) {
-    const k = keysO[i]
+  const keysCompare = []
+
+  if (Array.isArray(keys)) keys.forEach(k => keysCompare.push(k))
+  else if (typeof keys === 'object') Object.keys(keys).forEach(k => keysCompare.push(k))
+  else forceArray(keys).forEach(k => keysCompare.push(k))
+
+  Object.keys(obj).forEach(k => {
     if (keysCompare.includes(k)) target[k] = obj[k]
-  }
+  })
+
   return target
 }
 
@@ -112,7 +119,7 @@ export function onlyWithProperties(obj, keys = []) {
  */
 export function compareValues(key, order = 'asc') {
   return function innerSort(a, b) {
-    if (!(key in a) || !(key in a)) return 0
+    if (!(key in a) || !(key in b)) return 0
     const varA = typeof a[key] === 'string' ? a[key].toUpperCase() : a[key]
     const varB = typeof b[key] === 'string' ? b[key].toUpperCase() : b[key]
 

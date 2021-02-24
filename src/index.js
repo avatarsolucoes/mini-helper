@@ -23,7 +23,7 @@ export {
   validURL
 } from './string'
 
-export { getValue, objectHasKeys } from './objects'
+export { getValue, objectHasKeys, mirrorNotNullObject } from './objects'
 export {
   compareValues,
   objectWithoutProperties,
@@ -68,6 +68,19 @@ export {
   notNull,
   tryInteger
 } from './variables'
+
+export { toBase64Img } from './image'
+
+export {
+  fileExists,
+  fileHash,
+  extName,
+  renameFile,
+  deleteFile,
+  fileParse,
+  pathJoin,
+  copyFile
+} from './file'
 
 /**
  * @typedef {import('./theme').ITheme} ITheme

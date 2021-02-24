@@ -1,4 +1,3 @@
-import fs from 'fs'
 import path from 'path'
 import crypto from 'crypto'
 
@@ -10,8 +9,9 @@ import crypto from 'crypto'
  */
 export function fileHash(filename, algorithm = 'md5') {
   // eslint-disable-next-line consistent-return
-  return new Promise((resolve, reject) => {
+  return new Promise(resolve => {
     try {
+      const fs = require('fs')
       const shasum = crypto.createHash(algorithm)
       const s = fs.ReadStream(filename)
       s.on('data', data => {
@@ -22,8 +22,8 @@ export function fileHash(filename, algorithm = 'md5') {
         const hash = shasum.digest('hex')
         return resolve(hash)
       })
-    } catch (error) {
-      return reject(error)
+    } catch {
+      return false
     }
   })
 }
@@ -64,6 +64,7 @@ export function extName(filePath) {
  */
 export function fileExists(filePath) {
   try {
+    const fs = require('fs')
     return !!fs.existsSync(filePath)
   } catch (err) {
     return false
@@ -77,6 +78,7 @@ export function fileExists(filePath) {
  */
 export async function deleteFile(filePath) {
   try {
+    const fs = require('fs')
     if (fileExists(filePath)) {
       await fs.unlinkSync(filePath)
     }
@@ -96,6 +98,7 @@ export async function deleteFile(filePath) {
  */
 export function renameFile(oldPath, newPath, force) {
   try {
+    const fs = require('fs')
     if (force && fileExists(newPath)) {
       fs.unlinkSync(newPath)
     }
@@ -104,4 +107,22 @@ export function renameFile(oldPath, newPath, force) {
   } catch (_error) {
     return false
   }
+}
+
+/**
+ * @function copyFile
+ * @param {string} source
+ * @param {string} target
+ * @returns {Promise<boolean>}
+ */
+export async function copyFile(source, target) {
+  let result = false
+  try {
+    const { copyFile } = require('fs/promises')
+    await copyFile(source, target)
+    result = true
+  } catch {
+    result = false
+  }
+  return result
 }
