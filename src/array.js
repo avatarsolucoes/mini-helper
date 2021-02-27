@@ -1,4 +1,4 @@
-import chunk from 'chunk'
+// import chunk from 'chunk'
 import { forceArray } from './arrayts'
 
 // /**
@@ -58,6 +58,9 @@ export function rangeArray(init, fim, interval = 1) {
  */
 export function buffToArray(buf, size = 2) {
   if (!buf) return []
+
+  const chunk = require('chunk')
+
   if (buf instanceof Buffer) {
     return chunk(buf.toString('hex'), size)
   }

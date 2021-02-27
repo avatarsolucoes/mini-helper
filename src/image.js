@@ -1,5 +1,5 @@
 // import sharp from 'sharp'
-import base64Img from 'base64-img'
+// import base64Img from 'base64-img'
 
 // /**
 //  * @function convertSvgToPng
@@ -20,5 +20,6 @@ import base64Img from 'base64-img'
  * @param {String} filePath
  */
 export function toBase64Img(filePath) {
-  return base64Img.base64Sync(filePath)
+  const base64Img = require('base64-img')
+  return base64Img && base64Img.base64Sync(filePath)
 }
