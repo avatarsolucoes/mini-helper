@@ -53,6 +53,7 @@ export {
   strDateFromTo,
   timeRest
 } from './date'
+export { isValidDate } from './datets'
 
 export {
   ASCToHex,

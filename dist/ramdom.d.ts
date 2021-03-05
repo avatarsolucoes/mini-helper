@@ -27,10 +27,10 @@ export function getInRamdom(object: any): any;
  * @param {Number} size - integer (default 16)
  * @returns {String} - HEX
  * @example
- * hexRamdom() // c05662d445cd3988402521922ba16e29
+ * getRamdomHex() // c05662d445cd3988402521922ba16e29
  */
 export function getRamdomHex(size?: number): string;
-export function generateIdPass(payload: any, secret?: string): any;
+export function generateIdPass(payload: any, secret?: string): string;
 /**
  * @function hashPassword
  * @param {String} payload
@@ -43,7 +43,7 @@ export function hashPassword(payload: string, secret?: string): string;
  * @param {String} str
  * @param {Boolean} toBuffer
  */
-export function hashMD5(str: string, toBuffer: boolean): any;
+export function hashMD5(str: string, toBuffer: boolean): string | Buffer;
 /**
  * @function isMD5
  * @param {String} inputString

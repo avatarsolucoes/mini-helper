@@ -1349,6 +1349,13 @@
   resolved "https://registry.yarnpkg.com/@types/json5/-/json5-0.0.29.tgz#ee28707ae94e11d2b827bcbe5270bcea7f3e71ee"
   integrity sha1-7ihweulOEdK4J7y+UnC86n8+ce4=
 
+"@types/md5@^2.3.0":
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/@types/md5/-/md5-2.3.0.tgz#3b6a623091160f4dc75be3173e25f2110dc3fa1f"
+  integrity sha512-556YJ7ejzxIqSSxzyGGpctuZOarNZJt/zlEkhmmDc1f/slOEANHuwu2ZX7YaZ40rMiWoxt8GvAhoDpW1cmSy6A==
+  dependencies:
+    "@types/node" "*"
+
 "@types/minimist@^1.2.0":
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/@types/minimist/-/minimist-1.2.1.tgz#283f669ff76d7b8260df8ab7a4262cc83d988256"
@@ -1385,6 +1392,11 @@
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/@types/stack-utils/-/stack-utils-2.0.0.tgz#7036640b4e21cc2f259ae826ce843d277dad8cff"
   integrity sha512-RJJrrySY7A8havqpGObOB4W92QXKJo63/jFLLgpvOtsGUqbQZ9Sbgl35KMm1DjC6j7AvmmU2bIno+3IyEaemaw==
+
+"@types/uuid@^8.3.0":
+  version "8.3.0"
+  resolved "https://registry.yarnpkg.com/@types/uuid/-/uuid-8.3.0.tgz#215c231dff736d5ba92410e6d602050cce7e273f"
+  integrity sha512-eQ9qFW/fhfGJF8WKHGEHZEyVWfZxrT+6CLIJGBcZPfxUh/+BnEj+UCGYMlr9qZuX/2AltsvwrGqp0LhEW8D0zQ==
 
 "@types/yargs-parser@*":
   version "20.2.0"

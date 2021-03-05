@@ -1,4 +1,5 @@
 export { forceArray } from "./arrayts";
+export { isValidDate } from "./datets";
 export { toBase64Img } from "./image";
 export { defaultTheme } from "./theme";
 export type ITheme = import("./theme").ITheme;

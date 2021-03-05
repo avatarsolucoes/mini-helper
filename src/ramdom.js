@@ -1,9 +1,3 @@
-import crypto from 'crypto'
-import getRandomValues from 'get-random-values'
-import { v4 as uuid } from 'uuid'
-import md5 from 'md5'
-import chunk from 'chunk'
-
 /**
  * Returns a random number between min (inclusive) and max (exclusive)
  * @function getRandomArbitrary
@@ -35,19 +29,26 @@ export function getRandomInt(min, max) {
  * getRamdomStr(4,'0123ABCDEF')
  */
 export function getRamdomStr(len, whitelist = '123456789ABCEFGHKMPQRSTXYZ') {
-  return Array(len)
-    .fill('')
-    .map(() => {
-      // eslint-disable-next-line no-mixed-operators
-      const q = Math.floor((getRandomValues(new Uint8Array(1))[0] / (0xff + 1)) * whitelist.length)
-      return whitelist[q]
-    })
-    .join('')
+  try {
+    const getRandomValues = require('get-random-values')
+    return Array(len)
+      .fill('')
+      .map(() => {
+        // eslint-disable-next-line no-mixed-operators
+        const q = Math.floor(
+          (getRandomValues(new Uint8Array(1))[0] / (0xff + 1)) * whitelist.length
+        )
+        return whitelist[q]
+      })
+      .join('')
+  } catch {
+    throw new Error('install module "get-random-values"')
+  }
 }
 
 export function getInRamdom(object) {
   if (Array.isArray(object)) {
-    return object[getRandomInt(0, object.length - 1)]
+    return getInRamdom(object[getRandomInt(0, object.length - 1)])
   }
 
   if (typeof object === 'object') {
@@ -67,15 +68,19 @@ export function getInRamdom(object) {
  * @param {Number} size - integer (default 16)
  * @returns {String} - HEX
  * @example
- * hexRamdom() // c05662d445cd3988402521922ba16e29
+ * getRamdomHex() // c05662d445cd3988402521922ba16e29
  */
 export function getRamdomHex(size = 16) {
-  const result = crypto.randomBytes(size)
+  const { randomBytes } = require('crypto')
+  const result = randomBytes(size)
   return result.toString('hex')
 }
 
 export function generateIdPass(payload, secret = '') {
+  const { v4: uuid } = require('uuid')
+  const md5 = require('md5')
   const uid = uuid()
+
   const p = JSON.stringify(payload)
   return md5(`${uid}${p}${secret}${getRamdomHex()}`)
 }
@@ -87,7 +92,13 @@ export function generateIdPass(payload, secret = '') {
  * @returns {String} HASH MD5
  */
 export function hashPassword(payload, secret = '') {
-  return md5(`${payload}${secret}`)
+  try {
+    const md5 = require('md5')
+    return md5(`${payload}${secret}`)
+  } catch {
+    // eslint-disable-next-line no-throw-literal
+    throw new Error('install module "md5"')
+  }
 }
 
 /**
@@ -96,8 +107,13 @@ export function hashPassword(payload, secret = '') {
  * @param {Boolean} toBuffer
  */
 export function hashMD5(str, toBuffer) {
-  const hash = md5(`${str}`)
-  return toBuffer ? Buffer.from(chunk(hash, 2)) : hash
+  try {
+    const md5 = require('md5')
+    const hash = md5(`${str}`)
+    return toBuffer ? Buffer.from(require('chunk')(hash, 2)) : hash
+  } catch {
+    throw new Error('hashMd5 needs the "chunk" and "md5" dependencies')
+  }
 }
 
 /**
