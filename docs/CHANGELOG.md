@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.0.7](https://github.com/avatarsolucoes/mini-helper/compare/v1.0.6...v1.0.7) (2021-03-05)
+
+
+### Bug Fixes
+
+* imports peerDependecies ([c39d433](https://github.com/avatarsolucoes/mini-helper/commit/c39d43334a35bcc8a9b3170769267d979119ed10))
+
 ### [1.0.6](https://github.com/avatarsolucoes/mini-helper/compare/v1.0.5...v1.0.6) (2021-02-24)
 
 

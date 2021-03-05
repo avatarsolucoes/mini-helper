@@ -1,6 +1,6 @@
 {
   "name": "mini-helper",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "",
   "private": false,
   "main": "dist/index.js",
@@ -35,7 +35,7 @@
   },
   "scripts": {
     "coveralls": "cat ./coverage/lcov.info | coveralls",
-    "release": "standard-version --no-verify",
+    "release": "standard-version --no-verify --release-as patch",
     "test": "cross-env CI=true NODE_ENV=test jest --coverage --forceExit",
     "lint": "eslint --fix src --ext js --ext ts",
     "build": "rollup -c",
