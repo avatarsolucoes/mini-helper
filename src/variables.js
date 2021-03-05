@@ -1,5 +1,3 @@
-import chunk from 'chunk'
-
 export function isDefined(v) {
   try {
     return !!(v !== null && v !== undefined)
@@ -67,20 +65,24 @@ export function tryInteger(value) {
  * hexToAlphaNumeric('413943', true) // return 'A C'
  */
 export function hexToAlphaNumeric(hexx, preserve) {
-  if (!hexx) return ''
-  let hex = ''
-  if (hexx instanceof Buffer) hex = hexx.toString('hex').toUpperCase()
-  if (Array.isArray(hexx)) hex = hexx.join('').toUpperCase()
-  hex = chunk(hex, 2)
-  let result = ''
-  for (let i = 0; i < hex.length; i++) {
-    const h = hex[i]
-    const num = hexToInt(h)
-    if (preserve) {
-      result += num >= 40 && num <= 126 ? String.fromCharCode(num) : ' '
-    } else if (num >= 40 && num <= 126) result += String.fromCharCode(num)
+  try {
+    if (!hexx) return ''
+    let hex = ''
+    if (hexx instanceof Buffer) hex = hexx.toString('hex').toUpperCase()
+    if (Array.isArray(hexx)) hex = hexx.join('').toUpperCase()
+    hex = require('chunk')(hex, 2)
+    let result = ''
+    for (let i = 0; i < hex.length; i++) {
+      const h = hex[i]
+      const num = hexToInt(h)
+      if (preserve) {
+        result += num >= 40 && num <= 126 ? String.fromCharCode(num) : ' '
+      } else if (num >= 40 && num <= 126) result += String.fromCharCode(num)
+    }
+    return result
+  } catch (error) {
+    throw new Error('install module "chunk"')
   }
-  return result
 }
 
 export function hex2a(hexx) {

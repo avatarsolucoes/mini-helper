@@ -1,6 +1,6 @@
-import babel from 'rollup-plugin-babel'
-import commonjs from 'rollup-plugin-commonjs'
-import resolve from 'rollup-plugin-node-resolve'
+import { babel } from '@rollup/plugin-babel'
+import commonjs from '@rollup/plugin-commonjs'
+import { nodeResolve } from '@rollup/plugin-node-resolve'
 import { terser } from 'rollup-plugin-terser'
 import typescript from 'rollup-plugin-typescript2'
 import pkg from './package.json'
@@ -38,30 +38,37 @@ export default {
   ],
   plugins: [
     babel({
-      exclude: 'node_modules/**'
+      exclude: 'node_modules/**',
+      babelHelpers: 'bundled'
     }),
+    // typescript({
+    //   tsconfigOverride: {
+    //     compilerOptions: {
+    //       declaration: true,
+    //       declarationDir: './dist/index',
+    //       declarationMap: true
+    //     },
+    //     include: ['./src'],
+    //     exclude: [
+    //       'node_modules',
+    //       'build',
+    //       'dist',
+    //       'example',
+    //       'rollup.config.js',
+    //       'src/__tests__',
+    //       'src/setup*.js'
+    //     ]
+    //   },
+    //   rollupCommonJSResolveHack: false,
+    //   clean: true
+    // }),
     typescript({
-      tsconfigOverride: {
-        compilerOptions: {
-          declaration: true,
-          declarationDir: './dist/index',
-          declarationMap: true
-        },
-        include: ['./src'],
-        exclude: [
-          'node_modules',
-          'build',
-          'dist',
-          'example',
-          'rollup.config.js',
-          'src/__tests__',
-          'src/setup*.js'
-        ]
-      },
+      tsconfig: './tsconfig-build.json',
       rollupCommonJSResolveHack: false,
+      objectHashIgnoreUnknownHack: false,
       clean: true
     }),
-    resolve(),
+    nodeResolve(),
     commonjs(),
     terser()
   ]
