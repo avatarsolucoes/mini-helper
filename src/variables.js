@@ -1,3 +1,12 @@
+export function isModuleResolve(moduleName) {
+  try {
+    return !!require.resolve(moduleName)
+  } catch (e) {
+    // eslint-disable-next-line no-console
+    return console.error(`'${moduleName}' is not found`) && false
+  }
+}
+
 export function isDefined(v) {
   try {
     return !!(v !== null && v !== undefined)

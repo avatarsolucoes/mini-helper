@@ -49,4 +49,3 @@ export function hashMD5(str: string, toBuffer: boolean): string | Buffer;
  * @param {String} inputString
  */
 export function isMD5(inputString: string): boolean;
-//# sourceMappingURL=ramdom.d.ts.map

@@ -50,4 +50,3 @@ export function extractOfDateTime(datetime: Date | string, format: string, timez
     date: string;
     time: string;
 };
-//# sourceMappingURL=date.d.ts.map

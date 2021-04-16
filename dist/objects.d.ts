@@ -17,4 +17,3 @@ interface ISomeObject {
  */
 export declare function mirrorNotNullObject<T extends ISomeObject>(sourceModel: T, replacer: any): T;
 export {};
-//# sourceMappingURL=objects.d.ts.map

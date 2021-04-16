@@ -6,4 +6,3 @@
  * isValidDate('50/12/2012', 'DD/MM/YYYY') // false
  */
 export declare function isValidDate(value: string, from?: string | string[]): boolean;
-//# sourceMappingURL=datets.d.ts.map

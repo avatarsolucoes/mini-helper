@@ -2,7 +2,7 @@
   "compilerOptions": {
     "target": "es5",
     "allowJs": true,
-    "module": "esnext",
+    "module": "commonjs",
     "strict": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
@@ -19,6 +19,7 @@
     "noEmit": true,
   },
   "include": [
-    "./src"
+    "./src",
+    "custom/base64-img.d.ts"
   ]
 }

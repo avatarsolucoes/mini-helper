@@ -1,3 +1,4 @@
+export function isModuleResolve(moduleName: any): boolean | void;
 export function isDefined(v: any): boolean;
 export function notNull(value: any, defaultValue?: boolean): any;
 /**
@@ -53,4 +54,3 @@ export function ASCToHex(str: string): string;
  * hexToInt(['41','42','43']); // return ['A','B','C']
  */
 export function hexToInt(strhex: string | any[]): number;
-//# sourceMappingURL=variables.d.ts.map

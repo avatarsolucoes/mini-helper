@@ -1,17 +1,4 @@
-// import chunk from 'chunk'
-import { forceArray } from './arrayts'
-
-// /**
-//  * Force any values an array
-//  * @function forceArray
-//  * @param {any} value
-//  * @return {Array}
-//  * @example
-//  * forceArray('1') // return ['1']
-//  */
-// export function forceArray(value = []) {
-//   return !Array.isArray(value) ? [value] : value
-// }
+import chunk from './chunk'
 
 /**
  * If array return first item
@@ -35,20 +22,6 @@ export function* range(begin, end, interval = 1) {
     yield i
   }
 }
-
-/**
- * @function rangeArray
- * @param {Number} init
- * @param {Number} fim
- * @param {Number} interval
- * @returns {Array<number>}
- * @example
- * rangeArray(1, 5, 1) // [1,2,3,4,5]
- */
-export function rangeArray(init, fim, interval = 1) {
-  return Array.from(range(init, fim, interval))
-}
-
 /**
  * Convert Buffer in Array
  * @param {Buffer|ArrayBuffer|string} buf dataBuffer
@@ -58,8 +31,6 @@ export function rangeArray(init, fim, interval = 1) {
  */
 export function buffToArray(buf, size = 2) {
   if (!buf) return []
-
-  const chunk = require('chunk')
 
   if (buf instanceof Buffer) {
     return chunk(buf.toString('hex'), size)
@@ -93,23 +64,4 @@ export function averageInArray(arr, withZero) {
   if (!Array.isArray(arr)) return typeof arr === 'number' ? arr : 0
   const array = withZero ? arr.map(a => a || 0) : arr.filter(f => f)
   return array.reduce((a, b) => a + b, 0) / array.length
-}
-
-/**
- * @function sumArray
- * @param {Array<Number>} arrOfNumber
- * @param {boolean} checkNumber
- * @returns {Number} sum
- * @example
- * var arr = [4, 2, 8, 6];
- * sumArray(arr) // return 20
- * sumArray(['1','teste', 2], true) // return 3
- */
-export function sumArray(arrOfNumber, checkNumber) {
-  const sum = (t, n) => {
-    if (n && typeof n === 'number' && n !== 0) return t + n
-    if (n && typeof n === 'string' && checkNumber) return t + (parseInt(n, 10) || 0)
-    return t
-  }
-  return forceArray(arrOfNumber).reduce(sum, 0)
 }

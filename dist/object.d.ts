@@ -66,4 +66,3 @@ export type replaceObjectOptions = {
      */
     inc: boolean;
 };
-//# sourceMappingURL=object.d.ts.map

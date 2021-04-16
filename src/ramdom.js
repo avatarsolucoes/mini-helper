@@ -1,3 +1,5 @@
+import { isModuleResolve } from './variables'
+
 /**
  * Returns a random number between min (inclusive) and max (exclusive)
  * @function getRandomArbitrary
@@ -30,17 +32,20 @@ export function getRandomInt(min, max) {
  */
 export function getRamdomStr(len, whitelist = '123456789ABCEFGHKMPQRSTXYZ') {
   try {
-    const getRandomValues = require('get-random-values')
-    return Array(len)
-      .fill('')
-      .map(() => {
-        // eslint-disable-next-line no-mixed-operators
-        const q = Math.floor(
-          (getRandomValues(new Uint8Array(1))[0] / (0xff + 1)) * whitelist.length
-        )
-        return whitelist[q]
-      })
-      .join('')
+    const getRandomValues = isModuleResolve('get-random-values') && require('get-random-values')
+    return (
+      getRandomValues &&
+      Array(len)
+        .fill('')
+        .map(() => {
+          // eslint-disable-next-line no-mixed-operators
+          const q = Math.floor(
+            (getRandomValues(new Uint8Array(1))[0] / (0xff + 1)) * whitelist.length
+          )
+          return whitelist[q]
+        })
+        .join('')
+    )
   } catch {
     throw new Error('install module "get-random-values"')
   }

@@ -10,4 +10,3 @@ export interface ITheme {
     assets?: IThemeAssets;
 }
 export declare const defaultTheme: ITheme;
-//# sourceMappingURL=theme.d.ts.map

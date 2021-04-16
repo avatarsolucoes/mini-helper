@@ -12,16 +12,6 @@ export function unArray(arr: any[]): any;
  */
 export function range(begin: number, end: number, interval?: number): Generator<number, void, unknown>;
 /**
- * @function rangeArray
- * @param {Number} init
- * @param {Number} fim
- * @param {Number} interval
- * @returns {Array<number>}
- * @example
- * rangeArray(1, 5, 1) // [1,2,3,4,5]
- */
-export function rangeArray(init: number, fim: number, interval?: number): Array<number>;
-/**
  * Convert Buffer in Array
  * @param {Buffer|ArrayBuffer|string} buf dataBuffer
  * @returns {Array} chunked
@@ -43,15 +33,3 @@ export function medianInArray(arr: Array<number>, withZero?: boolean): number;
  * @returns {Number}
  */
 export function averageInArray(arr: Array<number>, withZero: boolean): number;
-/**
- * @function sumArray
- * @param {Array<Number>} arrOfNumber
- * @param {boolean} checkNumber
- * @returns {Number} sum
- * @example
- * var arr = [4, 2, 8, 6];
- * sumArray(arr) // return 20
- * sumArray(['1','teste', 2], true) // return 3
- */
-export function sumArray(arrOfNumber: Array<number>, checkNumber: boolean): number;
-//# sourceMappingURL=array.d.ts.map

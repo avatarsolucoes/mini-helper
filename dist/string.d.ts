@@ -134,4 +134,3 @@ export function isEmail(value: string): boolean;
  */
 export function validURL(str: string | Array<string>): boolean | Array<boolean>;
 export const defaultForbidenChars: "'@#$%¨&*()_+{}?^:><|¹²³£¢¬§ªº°;.,~´`=-";
-//# sourceMappingURL=string.d.ts.map

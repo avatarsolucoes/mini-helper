@@ -1,5 +1,5 @@
 import { resolve } from 'path'
-import { toBase64Img, fileExists } from '../src'
+import { toBase64Img, fileExists } from '../src/node'
 
 const image = resolve(__dirname, 'avatar-low.png')
 

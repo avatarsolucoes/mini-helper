@@ -1,7 +1,16 @@
 import { resolve, dirname } from 'path'
-import { fileHash, extName, renameFile, fileExists, pathJoin, copyFile, deleteFile } from '../src'
+import {
+  fileHash,
+  extName,
+  renameFile,
+  fileExists,
+  pathJoin,
+  copyFile,
+  deleteFile
+} from '../src/node'
 
 const image = resolve(__dirname, 'avatar-low.png')
+console.log('image', image)
 
 describe('Test files', () => {
   it('deveria gerar hash de arquivo', async () => {

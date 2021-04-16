@@ -1,6 +1,6 @@
-export { unArray, buffToArray, range, rangeArray } from './array'
-export { forceArray } from './arrayts'
-export { medianInArray, averageInArray, sumArray } from './array'
+export { unArray, buffToArray, range, medianInArray, averageInArray } from './array'
+export { forceArray, rangeArray, sumArray } from './arrayts'
+
 export {
   defaultForbidenChars,
   extractHostname,
@@ -31,7 +31,7 @@ export {
   isObject,
   mergeDeep
 } from './object'
-export { round, round2, round3 } from './number'
+export { round, round2 } from './number'
 export {
   generateIdPass,
   getInRamdom,
@@ -68,26 +68,5 @@ export {
   tryInteger
 } from './variables'
 
-export { toBase64Img } from './image'
-
-export {
-  fileExists,
-  fileHash,
-  extName,
-  renameFile,
-  deleteFile,
-  fileParse,
-  pathJoin,
-  copyFile,
-  isBrowser,
-  isNode
-} from './file'
-
-/**
- * @typedef {import('./theme').ITheme} ITheme
- * @typedef {import('./theme').IThemeAssets} IThemeAssets
- * @exports ITheme
- * @exports IThemeAssets
- */
-
 export { defaultTheme } from './theme'
+export type { ITheme, IThemeAssets } from './theme'
