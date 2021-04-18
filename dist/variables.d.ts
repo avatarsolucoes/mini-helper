@@ -1,4 +1,4 @@
-export function isModuleResolve(moduleName: any): boolean | void;
+export function isModuleResolve(moduleName: any): boolean;
 export function isDefined(v: any): boolean;
 export function notNull(value: any, defaultValue?: boolean): any;
 /**

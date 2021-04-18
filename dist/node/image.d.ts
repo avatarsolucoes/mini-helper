@@ -1,4 +1,7 @@
 /**
+ * @deprecated use base64Sync
  * @function toBase64Img
+ * @param {string} filePath
+ * @returns {string}
  */
-export declare function toBase64Img(filePath: string): string;
+export function toBase64Img(filePath: string): string;

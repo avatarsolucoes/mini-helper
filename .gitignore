@@ -5,6 +5,7 @@ coverage
 yarn-error.log
 
 ./docs/**/*.zip
+tmp-*.*
 
 node_modules/**/*
 .expo/*

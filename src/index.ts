@@ -1,3 +1,4 @@
+export { chunk } from './chunk'
 export { unArray, buffToArray, range, medianInArray, averageInArray } from './array'
 export { forceArray, rangeArray, sumArray } from './arrayts'
 
@@ -6,15 +7,12 @@ export {
   extractHostname,
   firstWord,
   lastWord,
-  // isHex,
   isHexReg,
-  isMAC,
   isValidTime,
   removeAll,
   replaceAll,
   rmFirstChar,
   rmLastChar,
-  titleize,
   toMask,
   formatBytes,
   urlEncodeObject,
@@ -22,6 +20,7 @@ export {
   isEmail,
   validURL
 } from './string'
+export { isHex, isMAC, titleize } from './stringts'
 
 export { getValue, objectHasKeys, mirrorNotNullObject } from './objects'
 export {
@@ -31,7 +30,7 @@ export {
   isObject,
   mergeDeep
 } from './object'
-export { round, round2 } from './number'
+export { round, round2, roundStr } from './number'
 export {
   generateIdPass,
   getInRamdom,
@@ -53,11 +52,13 @@ export {
   strDateFromTo,
   timeRest
 } from './date'
-export { isValidDate } from './datets'
+export { isValidDate, timeStamp } from './datets'
+
+export { incrementDateTimeTimezone, incrementHourTimezone } from './timezone'
 
 export {
   ASCToHex,
-  hex2a,
+  hex2Char,
   hexToASC,
   hexToAlphaNumeric,
   hexToInt,
@@ -65,7 +66,8 @@ export {
   intToHex2,
   isDefined,
   notNull,
-  tryInteger
+  tryInteger,
+  isModuleResolve
 } from './variables'
 
 export { defaultTheme } from './theme'

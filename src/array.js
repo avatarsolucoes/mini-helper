@@ -1,4 +1,4 @@
-import chunk from './chunk'
+import { chunk } from './chunk'
 
 /**
  * If array return first item

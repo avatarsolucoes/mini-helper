@@ -1,1 +1,1 @@
-export default function chunk(collection: string, size?: number): string[];
+export declare function chunk(collection: string, size?: number): string[];

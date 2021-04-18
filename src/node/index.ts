@@ -11,4 +11,5 @@ export {
   isNode
 } from './file'
 
+export { base64, base64Sync, saveImageBase64, saveImageBase64Sync } from './base64'
 export { toBase64Img } from './image'

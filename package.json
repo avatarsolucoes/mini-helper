@@ -2,7 +2,7 @@
   "name": "mini-helper",
   "version": "1.0.7",
   "description": "",
-  "private": true,
+  "private": false,
   "main": "dist/index.js",
   "module": "dist/index.es.js",
   "types": "dist",
@@ -15,12 +15,6 @@
   ],
   "standard-version": {
     "infile": "docs/CHANGELOG.md"
-  },
-  "workspaces": {
-    "packages": [
-      "node/*",
-      "./*"
-    ]
   },
   "author": "Leandro Sbrissa <leandro.sbrissa@hotmail.com>",
   "contributors": [
@@ -41,19 +35,19 @@
   },
   "scripts": {
     "coveralls": "cat ./coverage/lcov.info | coveralls",
-    "release": "standard-version --no-verify --release-as patch",
-    "test": "cross-env CI=true NODE_ENV=test jest --coverage --forceExit",
+    "release": "standard-version --no-verify --skip.tag --release-as patch",
+    "test": "cross-env CI=true NODE_ENV=test jest --detectOpenHandles --coverage --forceExit",
     "lint": "eslint --fix src --ext js --ext ts",
-    "build": "rollup -c",
+    "build": "rollup -c && node ./scripts/build.js",
     "start": "rollup -c -w"
   },
   "browserslist": "> 0.25%, not dead",
   "dependencies": {},
-  "peerDependencies": {
-    "base64-img": "^1.0.4",
-    "chunk": "^0.0.3",
+  "optionalDependencies": {
     "get-random-values": "^1.2.2",
-    "md5": "^2.3.0",
+    "md5": "^2.3.0"
+  },
+  "peerDependencies": {
     "moment": "^2.29.1",
     "moment-timezone": "^0.5.33",
     "uuid": "^8.3.2"
@@ -74,8 +68,6 @@
     "babel-jest": "^26.6.3",
     "babel-plugin-module-resolver": "^4.0.0",
     "babel-plugin-root-import": "^6.6.0",
-    "base64-img": "^1.0.4",
-    "chunk": "^0.0.3",
     "coveralls": "^3.1.0",
     "cross-env": "^7.0.3",
     "dotenv": "^8.2.0",
@@ -103,7 +95,8 @@
     "rollup-plugin-typescript2": "^0.29.0",
     "standard-version": "^9.1.1",
     "ts-jest": "^26.4.4",
-    "typescript": "^4.1.3",
+    "tslib": "^2.2.0",
+    "typescript": "4.1.3",
     "uuid": "^8.3.2"
   },
   "husky": {

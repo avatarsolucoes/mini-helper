@@ -12,12 +12,13 @@ export const isBrowser = new Function('try {return this===window;}catch(e){ retu
  * @function fileHash
  * @param {string} filename
  * @param {'sha1'|'md5'|'sha256'|'sha512'} algorithm
- * @returns {Promise<string>|false}
+ * @returns {Promise<string>}
  */
 export async function fileHash(filename, algorithm = 'md5') {
-  if (isBrowser()) return false
-  const result = new Promise((resolve, reject) => {
-    try {
+  return (
+    !isBrowser() &&
+    isNode() &&
+    new Promise(resolve => {
       const shasum = createHash(algorithm)
       const s = fs.ReadStream(filename)
       s.on('data', data => shasum.update(data))
@@ -27,12 +28,8 @@ export async function fileHash(filename, algorithm = 'md5') {
         const hash = shasum.digest('hex')
         return resolve(hash)
       })
-    } catch (error) {
-      return reject(error)
-    }
-  })
-
-  return result
+    })
+  )
 }
 
 /**
@@ -42,9 +39,7 @@ export async function fileHash(filename, algorithm = 'md5') {
  * @returns {import('path').ParsedPath}
  */
 export function fileParse(filePath) {
-  if (isNode()) {
-    return filePath && parse(filePath)
-  }
+  return isNode() && filePath && parse(filePath)
 }
 
 /**
@@ -53,9 +48,7 @@ export function fileParse(filePath) {
  * @returns {string}
  */
 export function pathJoin(...paths) {
-  if (isNode()) {
-    return join(...paths)
-  }
+  return isNode() && join(...paths)
 }
 
 /**
@@ -65,9 +58,7 @@ export function pathJoin(...paths) {
  * @returns {string} extension ex: '.png'
  */
 export function extName(filePath) {
-  if (isNode()) {
-    return extname(filePath) || ''
-  }
+  return isNode() && filePath && extname(filePath)
 }
 
 /**
@@ -76,13 +67,10 @@ export function extName(filePath) {
  * @returns {boolean}
  */
 export function fileExists(filePath) {
-  try {
-    if (isNode()) {
-      return !!fs.existsSync(filePath)
-    }
-  } catch (err) {
-    return false
+  if (isNode() && filePath) {
+    return !!fs.existsSync(filePath)
   }
+  return false
 }
 
 /**
@@ -90,13 +78,12 @@ export function fileExists(filePath) {
  * @param {string} filePath
  * @returns {Promise<Boolean>}
  */
-export async function deleteFile(filePath) {
-  try {
-    if (isNode() && fileExists(filePath)) fs.unlinkSync(filePath)
+export function deleteFile(filePath) {
+  if (isNode() && filePath) {
+    if (fileExists(filePath)) fs.unlinkSync(filePath)
     return true
-  } catch (_error) {
-    return false
   }
+  return false
 }
 
 /**
@@ -104,21 +91,20 @@ export async function deleteFile(filePath) {
  * @param {String} oldPath
  * @param {String} newPath
  * @param {Boolean} force
- * @returns {Boolean}
+ * @returns {Promise<boolean>}
  */
-export function renameFile(oldPath, newPath, force) {
-  try {
-    if (isNode()) {
-      if (force && fileExists(newPath)) {
-        fs.unlinkSync(newPath)
-      }
-      fs.renameSync(oldPath, newPath)
-      return true
-    }
-    return false
-  } catch (_error) {
-    return false
+export async function renameFile(oldPath, newPath, force) {
+  if (isNode() && oldPath && fileExists(oldPath)) {
+    if (force && fileExists(newPath)) fs.unlinkSync(newPath)
+    return new Promise(resolve => {
+      fs.rename(oldPath, newPath, err => {
+        resolve(!err)
+        // if (err) resolve(false)
+        // else resolve(true)
+      })
+    })
   }
+  return false
 }
 
 /**
@@ -128,13 +114,14 @@ export function renameFile(oldPath, newPath, force) {
  * @returns {Promise<boolean>}
  */
 export async function copyFile(source, target) {
-  if (isBrowser()) return false
-
+  if (isBrowser() || !source || !target || !fileExists(source)) return false
   const result = await new Promise(resolve => {
     fs.copyFile(source, target, err => {
-      if (err) return resolve(false)
-      return resolve(true)
+      resolve(!err)
+      // if (err) resolve(false)
+      // else resolve(true)
     })
   })
+
   return result
 }

@@ -1,9 +1,6 @@
 {
-    "name": "@mini-helper/node",
-    "main": "index.js",
-    "module": "index.es.js",
-    "types": "./lib/esm/index.d.ts",
-    "sideEffects": false,
-    "author": "Leandro Sbrissa <leandro.sbrissa@hotmail.com>",
-    "license": "MIT"
+  "description": "only nodejs functions",
+  "main": "index.js",
+  "module": "index.es.js",
+  "types": "index.d.ts"
 }

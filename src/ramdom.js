@@ -1,4 +1,7 @@
 import { isModuleResolve } from './variables'
+import md5 from 'md5'
+import { chunk } from './chunk'
+import { v4 as uuid } from 'uuid'
 
 /**
  * Returns a random number between min (inclusive) and max (exclusive)
@@ -17,16 +20,18 @@ export function getRandomArbitrary(min, max) {
  * @returns {number}
  */
 export function getRandomInt(min, max) {
-  min = Math.ceil(min)
-  max = Math.floor(max)
-  return Math.floor(Math.random() * (max - min + 1)) + min
+  const m = Math.ceil(min)
+  return Math.floor(Math.random() * (Math.floor(max) - m + 1)) + m
 }
 
 /**
- * Gerar caracteres aleatorios
+ * @deprecated Will be depreciated in the next versions
+ * @description
+ * Generates random characters.
+ * Will be depreciated in the next versions by using external module 'get-random-values'
  * @function getRamdomStr
  * @param {Number} len tamanho
- * @param {String} wishlist lista de caracteres para utilizar
+ * @param {string} wishlist lista de caracteres para utilizar
  * @example
  * getRamdomStr(4,'0123ABCDEF')
  */
@@ -71,7 +76,7 @@ export function getInRamdom(object) {
 /**
  * @function getRamdomHex
  * @param {Number} size - integer (default 16)
- * @returns {String} - HEX
+ * @returns {string} - HEX
  * @example
  * getRamdomHex() // c05662d445cd3988402521922ba16e29
  */
@@ -82,50 +87,36 @@ export function getRamdomHex(size = 16) {
 }
 
 export function generateIdPass(payload, secret = '') {
-  const { v4: uuid } = require('uuid')
-  const md5 = require('md5')
   const uid = uuid()
-
   const p = JSON.stringify(payload)
   return md5(`${uid}${p}${secret}${getRamdomHex()}`)
 }
 
 /**
  * @function hashPassword
- * @param {String} payload
- * @param {String} secret
- * @returns {String} HASH MD5
+ * @param {string} payload
+ * @param {string} secret
+ * @returns {string} HASH MD5
  */
 export function hashPassword(payload, secret = '') {
-  try {
-    const md5 = require('md5')
-    return md5(`${payload}${secret}`)
-  } catch {
-    // eslint-disable-next-line no-throw-literal
-    throw new Error('install module "md5"')
-  }
+  return md5(`${payload}${secret}`)
 }
 
 /**
  * @function hashMD5
- * @param {String} str
- * @param {Boolean} toBuffer
+ * @param {string} str
+ * @param {boolean} toBuffer
+ * @returns {string|Buffer}
  */
 export function hashMD5(str, toBuffer) {
-  try {
-    const md5 = require('md5')
-    const hash = md5(`${str}`)
-    return toBuffer ? Buffer.from(require('chunk')(hash, 2)) : hash
-  } catch {
-    throw new Error('hashMd5 needs the "chunk" and "md5" dependencies')
-  }
+  const hash = md5(`${str}`)
+  return toBuffer ? Buffer.from(chunk(hash, 2)) : hash
 }
 
 /**
  * @function isMD5
- * @param {String} inputString
+ * @param {string} inputString
  */
 export function isMD5(inputString) {
-  // if (typeof inputString !== 'string') return false;
   return /[a-fA-F0-9]{32}/.test(inputString)
 }

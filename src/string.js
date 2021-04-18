@@ -87,51 +87,12 @@ export function removeAll(str, chars = defaultForbidenChars, replacement = '') {
 }
 
 /**
- * Primeiras letras em maiuscula
- * @function titleize
- * @param {String} text
- * @returns {String}
- * @example
- * titleize('teste de maiuscula') // Teste de Maiuscula
+ * @deprecated
  */
-export function titleize(text) {
-  if (!text) return ''
-  const cases = ['de', 'do', 'da', 'dos', 'das', 'a', 'o', 'as', 'os', 'e', 'di']
-  const words = text.toLowerCase().trim().split(' ')
-  return words
-    .map(w => {
-      if (cases.indexOf(w) < 0) {
-        return `${w[0].toUpperCase()}${w.slice(1)}`
-      }
-      return w
-    })
-    .join(' ')
-}
-
-/**
- * Verify if String is MAC address
- * @function isMAC
- * @param {String} strMac
- * @returns {Boolean}
- */
-export function isMAC(strMac) {
-  if (!strMac) return false
-  if (strMac.indexOf(':') >= 0 && strMac.length !== 17) return false
-  if (strMac.indexOf(':') < 0 && strMac.length !== 12) return false
-  const re = /^[a-fA-F0-9:]{17}|[a-fA-F0-9]{12}$/g
-  return re.test(strMac)
-}
-
 export function isHexReg(str) {
   const re = /[0-9A-Fa-f]{6}/g
   return re.test(str)
-  // re.lastIndex = 0; // be sure to reset the index after using .text()
 }
-
-// export function isHex(h) {
-//   const a = parseInt(h, 16)
-//   return a.toString(16) === h
-// }
 
 /**
  * @function extractHostname

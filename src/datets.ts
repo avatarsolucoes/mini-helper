@@ -12,3 +12,13 @@ export function isValidDate(value: string, from?: string | string[]): boolean {
   const eDate = moment(value, f, true)
   return !!eDate.isValid()
 }
+
+/**
+ * @function timeStamp
+ * @example
+ * timeStamp() // 178e26aad0b
+ * timeStamp(10) //
+ */
+export function timeStamp(radix = 16): string {
+  return (+new Date()).toString(radix)
+}

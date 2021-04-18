@@ -14,13 +14,22 @@ export function round(number: number, precision = 4): number {
 
 /**
  * Arredonda numero com casas decimais
- * @function round2
+ * @function roundStr
  * @example
- * round2(1234.5678, 1); // 1234.6
+ * roundStr(1234.5678, 1); // 1234.6
+ * roundStr('1234.5678', 1); // 1234.6
  */
-export function round2(number: number | string, precision = 4): string {
+export function roundStr(number: number | string, precision = 4): string {
   if (!number || (number && number === 0)) return '0'
   if (typeof number === 'string') return parseFloat(number).toFixed(precision)
   if (typeof number === 'number') return number.toFixed(precision)
   return '0'
 }
+
+/**
+ * @deprecated use roundStr
+ * @function round2
+ * @example
+ * round2(1234.5678, 1); // 1234.6
+ */
+export const round2 = roundStr

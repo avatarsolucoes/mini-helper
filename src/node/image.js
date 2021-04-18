@@ -1,11 +1,11 @@
-/* eslint-disable import/no-extraneous-dependencies */
-import { isModuleResolve } from '../variables'
+import { base64Sync } from './base64'
 
 /**
+ * @deprecated use base64Sync
  * @function toBase64Img
+ * @param {string} filePath
+ * @returns {string}
  */
 export function toBase64Img(filePath) {
-  const base64 = isModuleResolve('base64-img') && require('base64-img')
-  return base64 && base64.base64Sync(filePath)
-  // }
+  return base64Sync(filePath)
 }

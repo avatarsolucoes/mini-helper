@@ -1,4 +1,6 @@
 {
+    "description": "only nodejs functions",
     "main": "index.js",
-    "module": "index.es.js"
+    "module": "index.es.js",
+    "types": "index.d.ts"
 }

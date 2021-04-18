@@ -3,6 +3,7 @@ import commonjs from '@rollup/plugin-commonjs'
 import { nodeResolve } from '@rollup/plugin-node-resolve'
 import { terser } from 'rollup-plugin-terser'
 import typescript from 'rollup-plugin-typescript2'
+// import ts from '@rollup/plugin-typescript'
 import pkg from './package.json'
 
 const dir = process.cwd()
@@ -16,8 +17,13 @@ function makeExternalPredicate(externalArr) {
 }
 
 function getExternal() {
-  const external = Object.keys(pkg.peerDependencies || {})
-  const allExternal = [...external, ...Object.keys(pkg.dependencies || {})]
+  // const external = Object.keys(pkg.peerDependencies || {})
+  // const optionalDep = Object.keys(pkg.optionalDependencies || {})
+  const allExternal = [
+    ...Object.keys(pkg.optionalDependencies || {}),
+    ...Object.keys(pkg.peerDependencies || {}),
+    ...Object.keys(pkg.dependencies || {})
+  ]
   return makeExternalPredicate(allExternal)
 }
 
@@ -42,18 +48,19 @@ export const config = [
     input: `${dir}/src/node/index.ts`,
     external: getExternal(),
     plugins: [
+      // ts({ module: 'CommonJs' }),
       babel({
         exclude: 'node_modules/**',
         babelHelpers: 'bundled'
       }),
-      // typescript({
-      //   tsconfig: 'tsconfig-build.json',
-      //   rollupCommonJSResolveHack: false,
-      //   objectHashIgnoreUnknownHack: false,
-      //   clean: true
-      // }),
+      typescript({
+        tsconfig: './tsconfig-build-node.json',
+        rollupCommonJSResolveHack: false,
+        objectHashIgnoreUnknownHack: false,
+        clean: true
+      }),
       nodeResolve(),
-      commonjs(),
+      commonjs({ extensions: ['.js', '.ts'] }),
       terser()
     ],
     output: [
